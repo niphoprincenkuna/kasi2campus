@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kasi2Campus — APS & Average Calculator</title>
+  <style>
+    :root {
+      --brand:#003366; --accent:#0078d4; --bg:#eef2f7; --card:#ffffff;
+      --muted:#6b7280; --text:#0b1720; --radius:14px; --shadow:0 8px 20px rgba(0,0,0,0.08);
+      --gradient:linear-gradient(135deg,#0078d4,#00b4d8);
+    }
+    body{margin:0;font-family:"Segoe UI",Inter,Arial,sans-serif;background:var(--bg);color:var(--text);}
+    .site-header{background:var(--brand);color:#fff;}
+    .header-inner{max-width:1100px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;}
+    .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff;}
+    .brand img{height:44px;}
+    .brand-name{font-weight:700;font-size:18px;}
+    nav.primary{display:flex;gap:12px;flex-wrap:wrap;}
+    nav.primary a{color:#fff;text-decoration:none;padding:8px 12px;border-radius:8px;font-weight:600;font-size:14px;}
+    nav.primary a.active{background:rgba(255,255,255,0.15);}
+
+    .container{max-width:900px;margin:40px auto;padding:30px;background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);}
+    h1{text-align:center;color:var(--brand);margin-bottom:25px;font-size:28px;}
+    form{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+    label{font-weight:600;color:var(--brand);margin-bottom:6px;display:block;}
+    input,select{width:100%;padding:12px;border:1px solid #d1d5db;border-radius:10px;font-size:14px;transition:border .2s;}
+    input:focus,select:focus{border-color:#0078d4;outline:none;}
+    .full-width{grid-column:span 2;}
+    button{grid-column:span 2;background:var(--gradient);color:#fff;padding:14px;border:none;border-radius:12px;font-weight:700;cursor:pointer;font-size:16px;transition:transform .2s;}
+    button:hover{transform:scale(1.03);}
+    .results{margin-top:30px;padding:25px;background:#f9fafb;border-radius:12px;text-align:center;box-shadow:var(--shadow);}
+    .results h2{margin:0;color:#0078d4;font-size:22px;}
+    .results p{margin:8px 0;font-size:16px;}
+    .bar-container{background:#ddd;border-radius:10px;overflow:hidden;margin:10px 0;}
+    .bar{height:20px;width:0%;transition:width 1s ease;}
+    .conversion-table{margin-top:30px;background:#fff;padding:20px;border-radius:12px;box-shadow:var(--shadow);}
+    .conversion-table h3{margin-top:0;color:var(--brand);}
+    table{width:100%;border-collapse:collapse;margin-top:10px;}
+    th,td{padding:10px;border:1px solid #ddd;text-align:center;}
+    th{background:#0078d4;color:#fff;}
+    tr:hover{background:#f0f8ff;}
+    .reset-btn{margin-top:15px;background:#dc3545;color:#fff;padding:10px 14px;border:none;border-radius:8px;font-weight:600;cursor:pointer;}
+    .reset-btn:hover{background:#b02a37;}
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html">
+        <img src="images/logo.png" alt="Kasi2Campus logo" />
+        <span class="brand-name">Kasi2Campus</span>
+      </a>
+      <nav class="primary">
+        <a href="index.html">Home</a>
+        <a href="institutions.html">Institutions</a>
+        <a href="courses.html">Courses</a>
+        <a href="apply.html">Apply</a>
+        <a href="payments.html">Payments</a>
+        <a href="calculator.html" class="active">APS & Avg Calculator</a>
+        <a href="contact.html">Contact</a>
+        <a href="about.html">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="container">
+    <h1>APS & Average Calculator</h1>
+    <form id="apsForm">
+      <!-- Languages -->
+      <div>
+        <label>Home Language</label>
+        <select id="homeLang" required>
+          <option value="">Select...</option>
+          <option>Afrikaans</option><option>English</option><option>isiNdebele</option>
+          <option>isiXhosa</option><option>isiZulu</option><option>Sepedi</option>
+          <option>Sesotho</option><option>Setswana</option><option>Siswati</option>
+          <option>Tshivenda</option><option>Xitsonga</option>
+        </select>
+        <input type="number" id="homeLangMark" placeholder="Mark (%)" min="0" max="100" required>
+      </div>
+      <div>
+        <label>First Additional Language</label>
+        <select id="firstLang" required>
+          <option value="">Select...</option>
+          <option>Afrikaans</option><option>English</option><option>isiNdebele</option>
+          <option>isiXhosa</option><option>isiZulu</option><option>Sepedi</option>
+          <option>Sesotho</option><option>Setswana</option><option>Siswati</option>
+          <option>Tshivenda</option><option>Xitsonga</option>
+        </select>
+        <input type="number" id="firstLangMark" placeholder="Mark (%)" min="0" max="100" required>
+      </div>
+
+      <!-- Life Orientation -->
+      <div class="full-width">
+        <label>Life Orientation</label>
+        <input type="number" id="lifeOrientation" placeholder="Mark (%)" min="0" max="100" required>
+      </div>
+
+      <!-- Maths -->
+      <div class="full-width">
+        <label>Mathematics / Mathematical Literacy</label>
+        <select id="mathsType" required>
+          <option value="">Select...</option>
+          <option>Mathematics</option>
+          <option>Mathematical Literacy</option>
+        </select>
+        <input type="number" id="mathsMark" placeholder="Mark (%)" min="0" max="100" required>
+      </div>
+
+      <!-- Other subjects -->
+      <div><label>Subject 1</label><input type="text" id="subject1Name" placeholder="e.g. Physical Sciences"><input type="number" id="subject1Mark" placeholder="Mark (%)" min="0" max="100" required></div>
+      <div><label>Subject 2</label><input type="text" id="subject2Name" placeholder="e.g. Life Sciences"><input type="number" id="subject2Mark" placeholder="Mark (%)" min="0" max="100" required></div>
+      <div><label>Subject 3</label><input type="text" id="subject3Name" placeholder="e.g. Accounting"><input type="number" id="subject3Mark" placeholder="Mark (%)" min="0" max="100" required></div>
+      <div><label>Subject 4</label><input type="text" id="subject4Name" placeholder="e.g. Geography"><input type="number" id="subject4Mark" placeholder="Mark (%)" min="0" max="100" required></div>
+
+      <button type="submit">✨ Calculate APS & Average</button>
+    </form>
+
+    <div class="results" id="results" style="display:none;">
+      <h2>Results</h2>
+      <p id="apsScore"></p>
+      <div class="bar-container"><div id="apsBar" class="bar"></div></div>
+      <p id="averageScore"></p>
+            <div class="bar-container"><div id="avgBar" class="bar"></div></div>
+      <button class="reset-btn" type="button" id="resetBtn">Reset</button>
+    </div>
+
+    <div class="conversion-table">
+      <h3>APS Conversion Table</h3>
+      <table>
+        <tr><th>Percentage</th><th>APS Points</th></tr>
+        <tr><td>80–100%</td><td>7</td></tr>
+        <tr><td>70–79%</td><td>6</td></tr>
+        <tr><td>60–69%</td><td>5</td></tr>
+        <tr><td>50–59%</td><td>4</td></tr>
+        <tr><td>40–49%</td><td>3</td></tr>
+        <tr><td>30–39%</td><td>2</td></tr>
+        <tr><td>0–29%</td><td>1</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    function convertToAPS(mark) {
+      if (mark >= 80) return 7;
+      if (mark >= 70) return 6;
+      if (mark >= 60) return 5;
+      if (mark >= 50) return 4;
+      if (mark >= 40) return 3;
+      if (mark >= 30) return 2;
+      if (mark >= 0) return 1;
+      return 0;
+    }
+
+    const form = document.getElementById('apsForm');
+    const apsBar = document.getElementById('apsBar');
+    const avgBar = document.getElementById('avgBar');
+    const resetBtn = document.getElementById('resetBtn');
+
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      const marks = [];
+
+      // Collect marks
+      marks.push(parseInt(document.getElementById('homeLangMark').value));
+      marks.push(parseInt(document.getElementById('firstLangMark').value));
+      marks.push(parseInt(document.getElementById('lifeOrientation').value));
+      marks.push(parseInt(document.getElementById('mathsMark').value));
+      marks.push(parseInt(document.getElementById('subject1Mark').value));
+      marks.push(parseInt(document.getElementById('subject2Mark').value));
+      marks.push(parseInt(document.getElementById('subject3Mark').value));
+      marks.push(parseInt(document.getElementById('subject4Mark').value));
+
+      // Calculate APS & Average
+      const aps = marks.reduce((sum,m)=>sum+convertToAPS(m),0);
+      const avg = marks.reduce((sum,m)=>sum+m,0)/marks.length;
+
+      // Display results
+      document.getElementById('apsScore').textContent = "Total APS: " + aps;
+      document.getElementById('averageScore').textContent = "Average %: " + avg.toFixed(2);
+      document.getElementById('results').style.display = "block";
+
+      // Animate bars
+      apsBar.style.width = (aps/56*100) + "%"; // Max APS = 7*8 subjects = 56
+      avgBar.style.width = avg + "%";
+
+      // Color coding
+      apsBar.style.background = aps >= 35 ? "green" : aps >= 25 ? "orange" : "red";
+      avgBar.style.background = avg >= 60 ? "green" : avg >= 40 ? "orange" : "red";
+    });
+
+    // Reset button
+    resetBtn.addEventListener('click', function(){
+      form.reset();
+      document.getElementById('results').style.display = "none";
+      apsBar.style.width = "0%";
+      avgBar.style.width = "0%";
+    });
+  </script>
+</body>
+</html>
