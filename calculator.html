@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kasi2Campus | APS & Average Calculator</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header class="site-header">
+    <nav class="navbar container">
+      <a class="brand" href="index.html">
+        <img src="assets/logo.png" alt="Kasi2Campus logo" class="brand-logo" />
+        <span class="brand-name">Kasi2Campus</span>
+      </a>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+      </button>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="institutions.html">Institutions</a></li>
+        <li><a href="courses.html">Courses</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="apply.html">Apply</a></li>
+        <li><a class="active" href="calculator.html">APS & Average Calculator</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+
+      <a class="btn btn-primary nav-cta" href="apply.html">Apply Now</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>APS & Average Calculator</h2>
+          <p class="muted">
+            Enter your subjects and percentages. We’ll calculate your APS and average.
+            <strong>Life Orientation counts as APS = 1</strong> in this calculator.
+          </p>
+        </div>
+
+        <div class="calc-layout">
+          <!-- FORM -->
+          <div class="calc-card">
+            <div class="calc-top">
+              <h3>Subjects (7 mandatory + optional 8th)</h3>
+              <label class="toggle">
+                <input type="checkbox" id="use8" />
+                <span>Enable 8th subject (optional)</span>
+              </label>
+            </div>
+
+            <form id="calcForm" class="calc-form" novalidate>
+              <!-- Languages -->
+              <div class="row">
+                <div class="field">
+                  <label>Language 1 *</label>
+                  <select id="lang1" required></select>
+                </div>
+                <div class="field">
+                  <label>Language 1 % *</label>
+                  <input id="lang1Mark" type="number" min="0" max="100" placeholder="0 - 100" required />
+                </div>
+                <div class="level-pill" id="lang1Level">Level: -</div>
+              </div>
+
+              <div class="row">
+                <div class="field">
+                  <label>Language 2 *</label>
+                  <select id="lang2" required></select>
+                </div>
+                <div class="field">
+                  <label>Language 2 % *</label>
+                  <input id="lang2Mark" type="number" min="0" max="100" placeholder="0 - 100" required />
+                </div>
+                <div class="level-pill" id="lang2Level">Level: -</div>
+              </div>
+
+              <!-- Maths -->
+              <div class="row">
+                <div class="field">
+                  <label>Maths *</label>
+                  <select id="mathType" required>
+                    <option value="">Select</option>
+                    <option value="Mathematics">Mathematics</option>
+                    <option value="Mathematical Literacy">Mathematical Literacy</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label>Maths % *</label>
+                  <input id="mathMark" type="number" min="0" max="100" placeholder="0 - 100" required />
+                </div>
+                <div class="level-pill" id="mathLevel">Level: -</div>
+              </div>
+
+              <!-- Life Orientation -->
+              <div class="row">
+                <div class="field">
+                  <label>Life Orientation *</label>
+                  <input type="text" value="Life Orientation" disabled />
+                </div>
+                <div class="field">
+                  <label>Life Orientation % *</label>
+                  <input id="loMark" type="number" min="0" max="100" placeholder="0 - 100" required />
+                </div>
+                <div class="level-pill" id="loLevel">Level: 1 (rule)</div>
+              </div>
+
+              <!-- Other subjects (3 mandatory) -->
+              <div class="row">
+                <div class="field">
+                  <label>Subject 5 *</label>
+                  <select class="subj" id="sub5" required></select>
+                </div>
+                <div class="field">
+                  <label>Subject 5 % *</label>
+                  <input class="mark" id="sub5Mark" type="number" min="0" max="100" placeholder="0 - 100" required />
+                </div>
+                <div class="level-pill" id="sub5Level">Level: -</div>
+              </div>
+
+              <div class="row">
+                <div class="field">
+                  <label>Subject 6 *</label>
+                  <select class="subj" id="sub6" required></select>
+                </div>
+                <div class="field">
+                  <label>Subject 6 % *</label>
+                  <input class="mark" id="sub6Mark" type="number" min="0" max="100" placeholder="0 - 100" required />
+                </div>
+                <div class="level-pill" id="sub6Level">Level: -</div>
+              </div>
+
+              <div class="row">
+                <div class="field">
+                  <label>Subject 7 *</label>
+                  <select class="subj" id="sub7" required></select>
+                </div>
+                <div class="field">
+                  <label>Subject 7 % *</label>
+                  <input class="mark" id="sub7Mark" type="number" min="0" max="100" placeholder="0 - 100" required />
+                </div>
+                <div class="level-pill" id="sub7Level">Level: -</div>
+              </div>
+
+              <!-- Optional subject 8 -->
+              <div class="row dim" id="row8">
+                <div class="field">
+                  <label>Subject 8 (optional)</label>
+                  <select class="subj" id="sub8"></select>
+                </div>
+                <div class="field">
+                  <label>Subject 8 %</label>
+                  <input class="mark" id="sub8Mark" type="number" min="0" max="100" placeholder="0 - 100" />
+                </div>
+                <div class="level-pill" id="sub8Level">Level: -</div>
+              </div>
+
+              <div class="actions">
+                <button type="button" class="btn btn-ghost" id="resetBtn">Reset</button>
+                <button type="submit" class="btn btn-primary">Calculate</button>
+              </div>
+
+              <p class="muted small">
+                Universities calculate APS differently. This tool gives a helpful estimate.
+              </p>
+            </form>
+          </div>
+
+          <!-- RESULTS -->
+          <div class="calc-card">
+            <h3>Results</h3>
+
+            <div class="result-box">
+              <div class="result-item">
+                <div class="muted small">APS Total</div>
+                <div class="result-big" id="apsOut">-</div>
+              </div>
+
+              <div class="result-item">
+                <div class="muted small">Average %</div>
+                <div class="result-big" id="avgOut">-</div>
+              </div>
+            </div>
+
+            <div class="breakdown" id="breakdown"></div>
+
+            <h3 style="margin-top:16px;">Courses you can apply for</h3>
+            <p class="muted small" id="courseHint">
+              Suggestions are filtered by APS, Maths vs Maths Lit, and Physical Sciences selection.
+              Always confirm final requirements on the university website.
+            </p>
+            <div class="course-suggestions" id="courseSuggestions"></div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <script src="js/main.js"></script>
+  <script src="js/calculator.js"></script>
+</body>
+</html>

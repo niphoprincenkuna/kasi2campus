@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kasi2Campus | Thank You</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <nav class="navbar container">
+      <a class="brand" href="index.html">
+        <img src="assets/logo.png" class="brand-logo" alt="Kasi2Campus logo" />
+        <span class="brand-name">Kasi2Campus</span>
+      </a>
+      <a class="btn btn-primary" href="apply.html">Continue</a>
+    </nav>
+  </header>
+
+  <main class="section">
+    <div class="container">
+      <h2>Thank you! 🎉</h2>
+      <p class="muted" id="summary"></p>
+
+      <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:14px;">
+        <a class="btn btn-primary" href="apply.html">Continue to Apply</a>
+        <a class="btn btn-ghost" id="waBtn" href="#" target="_blank" rel="noopener noreferrer">
+          Message us on WhatsApp
+        </a>
+      </div>
+
+      <p class="muted small" style="margin-top:12px;">
+        Click “Message us on WhatsApp” to confirm your payment and start your application.
+      </p>
+    </div>
+  </main>
+
+  <script>
+    const pkg = localStorage.getItem("k2c_selected_package") || "your package";
+    const amount = localStorage.getItem("k2c_selected_amount") || "";
+    const number = localStorage.getItem("k2c_whatsapp_number") || "27664687222";
+    const msg = localStorage.getItem("k2c_whatsapp_message") || `Hi Kasi2Campus, I just paid for ${pkg}.`;
+
+    document.getElementById("summary").textContent =
+      amount ? `Payment received for ${pkg} (R${amount}). Let’s continue with your application.` :
+               `Payment received for ${pkg}. Let’s continue with your application.`;
+
+    const waUrl = `https://wa.me/${number}?text=${encodeURIComponent(msg)}`;
+    document.getElementById("waBtn").href = waUrl;
+  </script>
+</body>
+</html>

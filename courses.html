@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kasi2Campus | Courses</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- NAVBAR -->
+  <header class="site-header">
+    <nav class="navbar container">
+      <a class="brand" href="index.html">
+        <img src="assets/logo.png" alt="Kasi2Campus logo" class="brand-logo" />
+        <span class="brand-name">Kasi2Campus</span>
+      </a>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+      </button>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="institutions.html">Institutions</a></li>
+        <li><a class="active" href="courses.html">Courses</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="apply.html">Apply</a></li>
+        <li><a href="calculator.html">APS & Average Calculator</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+
+      <a class="btn btn-primary nav-cta" href="apply.html">Apply Now</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>High-Demand Courses in South Africa</h2>
+          <p class="muted">
+            Browse popular high-demand fields and see a <strong>typical APS range</strong>. APS differs per university and year —
+            always confirm on the university site.
+          </p>
+        </div>
+
+        <div class="course-toolbar">
+          <input id="courseSearch" class="input" type="search" placeholder="Search courses (e.g. Nursing, Computer Science, Engineering)..." />
+          <div class="muted small" id="resultsCount"></div>
+        </div>
+
+        <div id="coursesWrap" class="course-grid"></div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="container footer-inner">
+        <div class="footer-brand">
+          <img src="assets/logo.png" alt="Kasi2Campus logo" />
+          <div>
+            <strong>Kasi2Campus</strong>
+            <div class="muted small">Helping learners apply with confidence.</div>
+          </div>
+        </div>
+
+        <div class="footer-links">
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+          <a href="pricing.html">Pricing</a>
+          <a href="calculator.html">APS Calculator</a>
+        </div>
+
+        <div class="muted small">© <span id="year"></span> Kasi2Campus. All rights reserved.</div>
+      </div>
+    </footer>
+  </main>
+
+  <script src="js/main.js"></script>
+  <script src="js/courses.js"></script>
+</body>
+</html>

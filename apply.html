@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kasi2Campus | Apply</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header class="site-header">
+    <nav class="navbar container">
+      <a class="brand" href="index.html">
+        <img src="assets/logo.png" alt="Kasi2Campus logo" class="brand-logo" />
+        <span class="brand-name">Kasi2Campus</span>
+      </a>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+      </button>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="institutions.html">Institutions</a></li>
+        <li><a href="courses.html">Courses</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+        <li><a class="active" href="apply.html">Apply</a></li>
+        <li><a href="calculator.html">APS & Average Calculator</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+
+      <a class="btn btn-primary nav-cta" href="pricing.html">View Packages</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Application Form</h2>
+          <p class="muted">
+            Fill in your details and upload your documents. After submitting, you will be redirected to Home.
+          </p>
+        </div>
+
+        <!-- FORM (FormSubmit) -->
+        <form
+          class="apply-form"
+          action="https://formsubmit.co/kasi2campus@gmail.com"
+          method="POST"
+          enctype="multipart/form-data"
+        >
+          <!-- FormSubmit settings -->
+          <input type="hidden" name="_subject" value="New Kasi2Campus Application" />
+          <input type="hidden" name="_captcha" value="true" />
+          <input type="hidden" name="_template" value="table" />
+          <input type="hidden" name="_next" value="https://niphoprincenkuna.github.io/kasi2campus/index.html" />
+
+          <!-- APPLICANT DETAILS -->
+<div class="form-card">
+  <h3>Applicant Details</h3>
+
+  <div class="form-grid">
+    <div class="field">
+      <label>First Name *</label>
+      <input id="first_name" type="text" name="First Name" required>
+    </div>
+
+    <div class="field">
+      <label>Second Name</label>
+      <input type="text" name="Second Name">
+    </div>
+
+    <div class="field">
+      <label>Surname *</label>
+      <input id="surname" type="text" name="Surname" required>
+    </div>
+
+    <div class="field">
+      <label>ID Number *</label>
+      <input type="text" name="ID Number" required>
+    </div>
+
+    <div class="field">
+      <label>Cell Phone Number *</label>
+      <input type="tel" name="Cell Number" required>
+    </div>
+
+    <div class="field">
+      <label>Email Address *</label>
+      <input type="email" name="Applicant Email" required>
+    </div>
+
+<div class="field">
+  <label>Current Status *</label>
+  <select id="current_status" name="Current Status" required>
+    <option value="">Select</option>
+    <option value="Currently in Grade 12">Currently in Grade 12</option>
+    <option value="Completed Matric">Completed Matric</option>
+    <option value="Upgrading">Upgrading</option>
+  </select>
+</div>
+
+<div class="field" id="matricYearWrap" style="display:none;">
+  <label>Year of Matric *</label>
+  <select id="matric_year" name="Year of Matric">
+    <option value="">Select Year</option>
+    <option>2026</option>
+    <option>2025</option>
+    <option>2024</option>
+    <option>2023</option>
+    <option>2022</option>
+    <option>2021</option>
+    <option>2020</option>
+    <option>2019</option>
+    <option>2018</option>
+    <option>2017</option>
+    <option>2016</option>
+    <option>2015</option>
+  </select>
+</div>
+
+    <div class="field">
+      <label>Current School *</label>
+      <input type="text" name="Current School" required placeholder="Name of current school">
+    </div>
+
+    <div class="field">
+      <label>Previous School (if different)</label>
+      <input type="text" name="Previous School" placeholder="If learner transferred schools">
+    </div>
+  </div>
+
+  <div class="field">
+    <label>Physical Address *</label>
+    <textarea name="Physical Address" required></textarea>
+  </div>
+</div>
+
+          <!-- COURSES -->
+          <div class="form-card">
+            <h3>Courses You Want To Apply For</h3>
+            <p class="muted small">List courses + preferred universities (if any).</p>
+
+            <div class="field">
+              <label>Courses & Universities *</label>
+              <textarea
+                name="Courses"
+                required
+                placeholder="Example:
+1) BSc Computer Science - UP, UJ
+2) Nursing - UWC, UKZN
+3) Teaching - UNISA"
+              ></textarea>
+            </div>
+          </div>
+
+          <!-- UPGRADING -->
+          <div class="form-card">
+            <h3>Upgrading</h3>
+            <p class="muted small">If the learner is upgrading results, select “Yes” and upload proof.</p>
+
+            <div class="form-grid">
+              <div class="field">
+                <label>Are you upgrading? *</label>
+                <select id="is_upgrading" name="Upgrading" required>
+                  <option value="">Select</option>
+                  <option value="No">No</option>
+                  <option value="Yes">Yes</option>
+                </select>
+              </div>
+
+              <div class="field" id="upgradeWhereWrap" style="display:none;">
+                <label>Where are you upgrading?</label>
+                <input type="text" name="Upgrading Institution" placeholder="College / School / Centre name" />
+              </div>
+            </div>
+
+            <div class="field" id="upgradeNoteWrap" style="display:none;">
+              <label>Upgrading Notes (optional)</label>
+              <textarea name="Upgrading Notes" placeholder="Which subjects are you upgrading? Any extra info..."></textarea>
+            </div>
+          </div>
+
+          <!-- NEXT OF KIN -->
+          <div class="form-card">
+            <h3>Next of Kin Details</h3>
+
+            <div class="form-grid">
+              <div class="field">
+                <label>Parent/Guardian Name *</label>
+                <input type="text" name="Parent Name" required />
+              </div>
+
+              <div class="field">
+                <label>Parent/Guardian Surname *</label>
+                <input type="text" name="Parent Surname" required />
+              </div>
+
+              <div class="field">
+                <label>Parent Cell Phone *</label>
+                <input type="tel" name="Parent Cell" required />
+              </div>
+
+              <div class="field">
+                <label>Parent ID Number *</label>
+                <input type="text" name="Parent ID" required />
+              </div>
+
+              <div class="field">
+                <label>Parent Email *</label>
+                <input type="email" name="Parent Email" required />
+              </div>
+            </div>
+          </div>
+
+          <!-- DOCUMENT UPLOADS -->
+          <div class="form-card">
+            <h3>Upload Documents</h3>
+            <p class="muted small">Upload clear photos or PDFs.</p>
+
+            <div class="form-grid">
+              <div class="field">
+                <label>ID Copy Upload *</label>
+                <input type="file" name="ID Copy" accept=".pdf,.jpg,.jpeg,.png" required />
+                <div class="hint">PDF, JPG, PNG</div>
+              </div>
+
+              <div class="field">
+                <label>Latest Results Upload *</label>
+                <input type="file" name="Latest Results" accept=".pdf,.jpg,.jpeg,.png" required />
+                <div class="hint">PDF, JPG, PNG</div>
+              </div>
+
+              <div class="field">
+                <label>Proof of Payment Upload *</label>
+                <input type="file" name="Proof of Payment" accept=".pdf,.jpg,.jpeg,.png" required />
+                <div class="hint">PDF, JPG, PNG</div>
+              </div>
+
+              <div class="field" id="proofUpgradeWrap" style="display:none;">
+                <label>Proof of Upgrading Upload *</label>
+                <input type="file" id="proof_of_upgrading" name="Proof of Upgrading" accept=".pdf,.jpg,.jpeg,.png" />
+                <div class="hint">Only if upgrading</div>
+              </div>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary full">Submit Application</button>
+
+          <p class="muted small" style="margin-top:10px;">
+            By submitting, you confirm that the information provided is correct.
+          </p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <img src="assets/logo.png" alt="Kasi2Campus logo" />
+        <div>
+          <strong>Kasi2Campus</strong>
+          <div class="muted small">Helping learners apply with confidence.</div>
+        </div>
+      </div>
+      <div class="muted small">© <span id="year"></span> Kasi2Campus. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    // Auto-fill selected package from pricing page
+    const savedPkg = localStorage.getItem("k2c_selected_package");
+    const savedAmount = localStorage.getItem("k2c_selected_amount");
+
+    const pkgSelect = document.getElementById("selected_package");
+    const amountInput = document.getElementById("selected_amount");
+
+    if (savedPkg && pkgSelect) {
+      // map localStorage values (Basic Package) -> select option labels
+      const map = {
+        "Basic Package": "Basic Package (R100)",
+        "Standard Package": "Standard Package (R150)",
+        "Comprehensive Package": "Comprehensive Package (R200)",
+        "Premium Package": "Premium Package (R300)"
+      };
+      pkgSelect.value = map[savedPkg] || savedPkg;
+    }
+
+    if (savedAmount && amountInput) amountInput.value = `R${savedAmount}`;
+
+    // Upgrading toggle: show extra fields + proof upload if Yes
+    const upgradingSelect = document.getElementById("is_upgrading");
+    const proofWrap = document.getElementById("proofUpgradeWrap");
+    const upgradeWhereWrap = document.getElementById("upgradeWhereWrap");
+    const upgradeNoteWrap = document.getElementById("upgradeNoteWrap");
+    const proofInput = document.getElementById("proof_of_upgrading");
+
+    function updateUpgradingUI() {
+      const isYes = upgradingSelect.value === "Yes";
+      proofWrap.style.display = isYes ? "block" : "none";
+      upgradeWhereWrap.style.display = isYes ? "block" : "none";
+      upgradeNoteWrap.style.display = isYes ? "block" : "none";
+      if (proofInput) proofInput.required = isYes; // require proof only if upgrading
+    }
+
+    upgradingSelect.addEventListener("change", updateUpgradingUI);
+    updateUpgradingUI();
+  </script>
+  <script>
+  const statusSelect = document.getElementById("current_status");
+  const matricYearWrap = document.getElementById("matricYearWrap");
+  const matricYearSelect = document.getElementById("matric_year");
+
+  function updateMatricYear() {
+    const show = statusSelect.value === "Completed Matric";
+    matricYearWrap.style.display = show ? "block" : "none";
+    matricYearSelect.required = show;
+  }
+
+  statusSelect.addEventListener("change", updateMatricYear);
+  updateMatricYear();
+</script>
+</body>
+</html>

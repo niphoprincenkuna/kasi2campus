@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kasi2Campus | Pricing</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header class="site-header">
+    <nav class="navbar container">
+      <a class="brand" href="index.html">
+        <img src="assets/logo.png" alt="Kasi2Campus logo" class="brand-logo" />
+        <span class="brand-name">Kasi2Campus</span>
+      </a>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+      </button>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="institutions.html">Institutions</a></li>
+        <li><a href="courses.html">Courses</a></li>
+        <li><a class="active" href="pricing.html">Pricing</a></li>
+        <li><a href="apply.html">Apply</a></li>
+        <li><a href="calculator.html">APS & Average Calculator</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+
+      <a class="btn btn-primary nav-cta" href="apply.html">Apply Now</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Services & Pricing</h2>
+          <p class="muted">Choose the package that fits your needs. Payments are secured by PayFast.</p>
+        </div>
+
+        <div class="pricing-grid">
+
+          <!-- BASIC -->
+          <article class="price-card">
+            <h3>BASIC</h3>
+            <div class="price">R100</div>
+            <ul>
+              <li>5 Applications</li>
+              <li>No Follow-ups</li>
+              <li>No NSFAS</li>
+              <li>No Career Guidance</li>
+            </ul>
+
+            <form class="payfast-form" action="https://payment.payfast.io/eng/process" method="post"
+              data-package="Basic Package"
+              data-amount="100">
+              <input type="hidden" name="cmd" value="_paynow">
+              <input type="hidden" name="receiver" value="33759143">
+              <input type="hidden" name="return_url" value="https://niphoprincenkuna.github.io/kasi2campus/thank-you.html">
+              <input type="hidden" name="cancel_url" value="https://niphoprincenkuna.github.io/kasi2campus/payment-cancelled.html">
+              <input type="hidden" name="amount" value="100">
+              <input type="hidden" name="item_name" value="Basic Package">
+              <input type="hidden" name="item_description" value="5 Applications | No Follow-ups">
+
+              <button class="btn btn-primary full" type="submit">Pay R100</button>
+            </form>
+          </article>
+
+          <!-- STANDARD -->
+          <article class="price-card">
+            <h3>STANDARD</h3>
+            <div class="price">R150</div>
+            <ul>
+              <li>10 Applications</li>
+              <li>No Follow-ups</li>
+            </ul>
+
+            <form class="payfast-form" action="https://payment.payfast.io/eng/process" method="post"
+              data-package="Standard Package"
+              data-amount="150">
+              <input type="hidden" name="cmd" value="_paynow">
+              <input type="hidden" name="receiver" value="33759143">
+              <input type="hidden" name="return_url" value="https://niphoprincenkuna.github.io/kasi2campus/thank-you.html">
+              <input type="hidden" name="cancel_url" value="https://niphoprincenkuna.github.io/kasi2campus/payment-cancelled.html">
+              <input type="hidden" name="amount" value="150">
+              <input type="hidden" name="item_name" value="Standard Package">
+              <input type="hidden" name="item_description" value="10 Applications | No Follow-ups">
+
+              <button class="btn btn-primary full" type="submit">Pay R150</button>
+            </form>
+          </article>
+
+          <!-- COMPREHENSIVE -->
+          <article class="price-card">
+            <h3>COMPREHENSIVE</h3>
+            <div class="price">R200</div>
+            <ul>
+              <li>All Institutions</li>
+              <li>NSFAS Application</li>
+              <li>No Follow-ups</li>
+            </ul>
+
+            <form class="payfast-form" action="https://payment.payfast.io/eng/process" method="post"
+              data-package="Comprehensive Package"
+              data-amount="200">
+              <input type="hidden" name="cmd" value="_paynow">
+              <input type="hidden" name="receiver" value="33759143">
+              <input type="hidden" name="return_url" value="https://niphoprincenkuna.github.io/kasi2campus/thank-you.html">
+              <input type="hidden" name="cancel_url" value="https://niphoprincenkuna.github.io/kasi2campus/payment-cancelled.html">
+              <input type="hidden" name="amount" value="200">
+              <input type="hidden" name="item_name" value="Comprehensive Package">
+              <input type="hidden" name="item_description" value="All Institutions | NSFAS Application | No Follow-ups">
+
+              <button class="btn btn-primary full" type="submit">Pay R200</button>
+            </form>
+          </article>
+
+          <!-- PREMIUM (BIGGER + GLOW) -->
+          <article class="price-card premium-card">
+            <div class="recommended">RECOMMENDED</div>
+            <h3>PREMIUM</h3>
+            <div class="price">R300</div>
+            <ul>
+              <li>All Institutions</li>
+              <li>NSFAS Application</li>
+              <li>Follow-ups</li>
+              <li>Career Guidance</li>
+            </ul>
+
+            <form class="payfast-form" action="https://payment.payfast.io/eng/process" method="post"
+              data-package="Premium Package"
+              data-amount="300">
+              <input type="hidden" name="cmd" value="_paynow">
+              <input type="hidden" name="receiver" value="33759143">
+              <input type="hidden" name="return_url" value="https://niphoprincenkuna.github.io/kasi2campus/thank-you.html">
+              <input type="hidden" name="cancel_url" value="https://niphoprincenkuna.github.io/kasi2campus/payment-cancelled.html">
+              <input type="hidden" name="amount" value="300">
+              <input type="hidden" name="item_name" value="Premium Package">
+              <input type="hidden" name="item_description" value="All Institutions | NSFAS | Follow-ups | Career Guidance">
+
+              <button class="btn btn-primary full" type="submit">Pay R300</button>
+            </form>
+          </article>
+
+        </div>
+
+        <!-- Add-on note -->
+        <div class="add-on-note">
+          <h4>Add-On Services</h4>
+          <p class="muted">
+            For packages that do not include <strong>NSFAS Application</strong>, <strong>Follow-ups</strong>, or
+            <strong>Career Guidance</strong>, you can add any of these services for:
+          </p>
+          <div class="add-price">R50 per service</div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <img src="assets/logo.png" alt="Kasi2Campus logo" />
+        <div>
+          <strong>Kasi2Campus</strong>
+          <div class="muted small">Helping learners apply with confidence.</div>
+        </div>
+      </div>
+
+      <div class="footer-links">
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="calculator.html">APS Calculator</a>
+      </div>
+
+      <div class="muted small">© <span id="year"></span> Kasi2Campus. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+
+  <!-- Save package selection + WhatsApp message data -->
+  <script>
+    const WHATSAPP_NUMBER = "27664687222"; // TODO: replace with your WhatsApp number (e.g. 27712345678)
+
+    function buildWhatsAppMessage(pkg, amount) {
+      return `Hi Kasi2Campus, I just paid for the ${pkg} (R${amount}). Please assist me with my university applications.`;
+    }
+
+    document.querySelectorAll(".payfast-form").forEach(form => {
+      form.addEventListener("submit", () => {
+        const pkg = form.dataset.package;
+        const amount = form.dataset.amount;
+
+        // Save selected package for Apply page (we will use this later)
+        localStorage.setItem("k2c_selected_package", pkg);
+        localStorage.setItem("k2c_selected_amount", amount);
+
+        // Save WhatsApp data for Thank You page (auto-open WhatsApp there)
+        localStorage.setItem("k2c_whatsapp_number", WHATSAPP_NUMBER);
+        localStorage.setItem("k2c_whatsapp_message", buildWhatsAppMessage(pkg, amount));
+      });
+    });
+  </script>
+</body>
+</html>
