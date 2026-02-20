@@ -1034,4 +1034,36 @@ img{ max-width: 100%; display: block; }
   .why-grid{ grid-template-columns: 1fr; }
   .cta-inner{ flex-direction: column; align-items: flex-start; }
   .cta-actions .btn{ width: 100%; }
+
+}
+.cancel-container{
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.cancel-card{
+  max-width: 500px;
+  width: 100%;
+  text-align: center;
+  padding: 30px;
+  border-radius: 20px;
+  border: 1px solid var(--stroke);
+  background: rgba(255,255,255,0.06);
+}
+
+.cancel-icon{
+  font-size: 3rem;
+  margin-bottom: 10px;
+}
+
+.cancel-actions{
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.cancel-actions .btn{
+  width: 100%;
 }
