@@ -179,18 +179,47 @@
     </section>
   </main>
 
-  <footer class="footer">
-    <div class="container footer-inner">
-      <div class="footer-brand">
-        <img src="assets/logo.png" alt="Kasi2Campus logo" />
-        <div>
-          <strong>Kasi2Campus</strong>
-          <div class="muted small">Helping learners apply with confidence.</div>
-        </div>
+ <footer class="site-footer">
+  <div class="container footer-grid">
+
+    <div class="footer-brand">
+      <img src="assets/logo.png" alt="Kasi2Campus logo" class="footer-logo">
+      <div>
+        <strong>Kasi2Campus</strong>
+        <div class="muted small">You focus on passing. We focus on your future.</div>
       </div>
-      <div class="muted small">© <span id="year"></span> Kasi2Campus. All rights reserved.</div>
     </div>
-  </footer>
+
+    <div class="footer-col">
+      <h4>Services</h4>
+      <a href="pricing.html">Pricing</a>
+      <a href="apply.html">Apply</a>
+      <a href="calculator.html">APS Calculator</a>
+      <a href="contact.html">Contact</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Resources</h4>
+      <a href="faq.html">FAQ</a>
+      <a href="deadlines.html">Deadlines</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <a href="privacy-policy.html">Privacy Policy</a>
+    </div>
+
+  </div>
+
+  <div class="container footer-bottom">
+    <div class="muted small">© <span id="year"></span> Kasi2Campus. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+  const y = document.getElementById("year");
+  if (y) y.textContent = new Date().getFullYear();
+</script>
 
   <script src="js/main.js"></script>
   <script>
@@ -198,4 +227,5 @@
   </script>
 
 </body>
+
 </html>
