@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Kasi2Campus - Admin</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
+</head>
+<body>
+
+  <header class="topbar">
+    <img src="assets/logo.png" alt="Kasi2Campus">
+    <button id="logout-btn">Log Out</button>
+  </header>
+
+  <div class="layout">
+
+    <aside class="sidebar">
+      <h2>Learners</h2>
+      <input type="text" id="learner-search" placeholder="Search learners...">
+      <ul id="learner-list"></ul>
+      <button id="show-all-btn">Show All Applications</button>
+    </aside>
+
+    <main class="dashboard">
+      <h1 id="dashboard-title">Admin Dashboard</h1>
+
+      <section class="form-card">
+        <h2>Add / Edit Application</h2>
+        <input type="email" id="learner-email" placeholder="Learner's email">
+        <input type="text" id="university" placeholder="University name">
+        <input type="text" id="student-number" placeholder="Student number">
+        <input type="text" id="uni-password" placeholder="University portal password">
+        <select id="status">
+          <option value="pending">Pending</option>
+          <option value="accepted">Accepted</option>
+          <option value="rejected">Rejected</option>
+        </select>
+        <button id="add-btn">Add Application</button>
+        <p id="form-msg"></p>
+      </section>
+
+      <section class="form-card">
+        <h2>Send Update to Learner</h2>
+        <p class="hint-text">Use this to alert a learner about missing information or documents.</p>
+        <input type="email" id="update-learner-email" placeholder="Learner's email">
+        <input type="text" id="update-university" placeholder="University (optional)">
+        <textarea id="update-message" placeholder="e.g. We still need your certified ID copy for UCT" rows="3"></textarea>
+        <button id="send-update-btn">Send Update</button>
+        <p id="update-msg"></p>
+      </section>
+
+      <section>
+        <h2>Applications</h2>
+        <table id="applications-table">
+          <thead>
+            <tr>
+              <th>Learner</th>
+              <th>University</th>
+              <th>Student #</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="applications-body"></tbody>
+        </table>
+      </section>
+
+      <section>
+        <h2>Sent Updates</h2>
+        <table id="updates-table">
+          <thead>
+            <tr>
+              <th>Learner</th>
+              <th>University</th>
+              <th>Message</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="updates-body"></tbody>
+        </table>
+      </section>
+    </main>
+
+  </div>
+
+  <script type="module" src="js/admin.js"></script>
+</body>
+</html>

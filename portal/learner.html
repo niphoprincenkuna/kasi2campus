@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Kasi2Campus - My Applications</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
+</head>
+<body>
+
+  <header class="topbar">
+    <img src="assets/logo.png" alt="Kasi2Campus">
+    <button id="logout-btn">Log Out</button>
+  </header>
+
+  <main class="dashboard">
+    <h1>My Applications</h1>
+
+    <section>
+      <h2>Updates <span id="unread-count" class="unread-badge" style="display:none;"></span></h2>
+      <div id="updates-list"></div>
+    </section>
+
+    <section>
+      <h2>Applications</h2>
+      <table id="applications-table">
+        <thead>
+          <tr>
+            <th>University</th>
+            <th>Student #</th>
+            <th>Password</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="applications-body"></tbody>
+      </table>
+    </section>
+  </main>
+
+  <script type="module" src="js/learner.js"></script>
+</body>
+</html>
