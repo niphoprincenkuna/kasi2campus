@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Kasi2Campus - Sign Up</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="login-page">
+
+  <div class="login-box">
+    <h1>Create Your Account</h1>
+    <p class="subtitle">Join Kasi2Campus to track your applications</p>
+    <div class="accent-line"></div>
+
+    <label for="full-name">Full Name</label>
+    <input type="text" id="full-name" placeholder="Enter your full name">
+
+    <label for="email">Email Address</label>
+    <input type="email" id="email" placeholder="Enter your email">
+
+    <label for="password">Password</label>
+    <div class="password-wrapper">
+      <input type="password" id="password" placeholder="Min 6 characters">
+      <button type="button" id="toggle-password" aria-label="Show password">👁</button>
+    </div>
+
+    <label for="confirm-password">Confirm Password</label>
+    <div class="password-wrapper">
+      <input type="password" id="confirm-password" placeholder="Re-enter your password">
+      <button type="button" id="toggle-confirm-password" aria-label="Show password">👁</button>
+    </div>
+
+    <button id="signup-btn">Sign Up</button>
+
+    <p id="error-msg"></p>
+
+    <div class="divider"><span>or</span></div>
+
+    <a href="index.html" class="create-account-btn">
+      Already have an account? Log In
+    </a>
+
+    <p class="footer-note">© 2026 Kasi2Campus. All rights reserved.</p>
+  </div>
+
+  <script type="module" src="js/signup.js"></script>
+</body>
+</html>
