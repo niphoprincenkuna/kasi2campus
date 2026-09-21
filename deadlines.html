@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Kasi2Campus | University Deadlines</title>
+<meta name="description" content="South African university application opening and closing dates for the next intake cycle, sorted by closing date." />
+<link rel="icon" href="assets/logo-emblem.png" type="image/png" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css" />
+
+<style>
+  /* Page-scoped: deadlines table (uses the site's existing tokens) */
+  .table-wrap { border: 1px solid var(--line); border-radius: 16px; overflow: auto; background: var(--surface); }
+  .dl-table { width: 100%; border-collapse: collapse; font-size: 0.92rem; min-width: 640px; }
+  .dl-table thead th {
+    text-align: left; padding: 14px 18px; background: var(--bg-soft);
+    font-size: 0.78rem; text-transform: uppercase; letter-spacing: .04em; color: var(--muted);
+    border-bottom: 1px solid var(--line); white-space: nowrap;
+  }
+  .dl-table tbody td { padding: 14px 18px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  .dl-table tbody tr:last-child td { border-bottom: 0; }
+  .dl-table tbody tr:hover { background: var(--bg-soft); }
+  .dl-table .uni-name { font-weight: 700; color: var(--text); }
+  .dl-table .closes { font-weight: 800; color: var(--link); white-space: nowrap; }
+  .dl-table .opens { color: var(--muted); white-space: nowrap; }
+  .dl-table .notes { color: var(--muted); }
+  .badge-soon { display:inline-block; margin-top:4px; padding:2px 9px; border-radius:999px; background:var(--red-tint); color:var(--red); font-size:0.72rem; font-weight:700; }
+</style>
+</head>
+
+<body>
+<!-- Icon sprite -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-mail" viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+    <symbol id="i-calc" viewBox="0 0 24 24"><rect width="16" height="20" x="4" y="2" rx="2"/><line x1="8" x2="16" y1="6" y2="6"/><line x1="16" x2="16" y1="14" y2="18"/><path d="M16 10h.01M12 10h.01M8 10h.01M12 14h.01M8 14h.01M12 18h.01M8 18h.01"/></symbol>
+    <symbol id="i-cal" viewBox="0 0 24 24"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol>
+    <symbol id="i-alert" viewBox="0 0 24 24"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/><line x1="12" x2="12" y1="9" y2="13"/><line x1="12" x2="12.01" y1="17" y2="17"/></symbol>
+  </defs>
+</svg>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="container">
+    <a href="calculator.html"><svg class="icon" width="16" height="16"><use href="#i-calc"/></svg><span><strong>Know your APS</strong> before you apply</span></a>
+    <div class="links">
+      <a href="deadlines.html"><svg class="icon" width="16" height="16"><use href="#i-cal"/></svg>Deadlines</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html"><svg class="icon" width="16" height="16"><use href="#i-mail"/></svg>Contact</a>
+    </div>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<header class="site-header">
+  <nav class="navbar container" aria-label="Main">
+    <a class="brand" href="index.html" aria-label="Kasi2Campus home">
+      <img src="logo.png" alt="Kasi2Campus logo" style="height:40px; width:auto;" />
+      <span class="brand-name">Kasi<i>2</i>Campus</span>
+    </a>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="institutions.html">Institutions</a></li>
+      <li><a href="courses.html">Courses</a></li>
+      <li><a href="pricing.html">Pricing</a></li>
+      <li><a href="apply.html">Apply</a></li>
+      <li><a href="portal/index.html">Student Portal</a></li>
+      <li><a href="calculator.html">APS &amp; Average Calculator</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+
+    <a class="btn btn-accent nav-cta" href="apply.html">Apply Now</a>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navLinks">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+  </nav>
+</header>
+
+<main id="main">
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="container">
+      <div class="crumbs">
+        <a href="index.html">Home</a>
+        <svg class="icon" width="14" height="14"><use href="#i-arrow"/></svg>
+        <span aria-current="page">Deadlines</span>
+      </div>
+    </div>
+    <div class="container">
+      <div class="pill"><span class="dot"></span><span>Sorted by closing date</span></div>
+      <h1>University Application Deadlines</h1>
+      <p>These dates are for the <strong>next intake cycle</strong> where available. Deadlines can change by faculty or programme &mdash; always confirm on the university&rsquo;s own site before your closing date.</p>
+    </div>
+  </section>
+
+  <!-- SEARCH -->
+  <section class="filters">
+    <div class="container" style="display:flex; gap:16px; flex-wrap:wrap; align-items:center; justify-content:space-between;">
+      <div class="search" style="flex:1; min-width:260px;">
+        <svg class="icon lead-ico" width="18" height="18"><use href="#i-search"/></svg>
+        <input id="dlSearch" type="search" placeholder="Search a university (e.g. UCT, Wits, UP, Stellenbosch)..." />
+        <button class="clear" id="dlClear" type="button" aria-label="Clear search" hidden>
+          <svg class="icon" width="16" height="16"><use href="#i-x"/></svg>
+        </button>
+      </div>
+
+      <a class="btn btn-ghost" target="_blank" rel="noopener noreferrer"
+         href="https://wa.me/27664687222?text=Hi%20Kasi2Campus%2C%20please%20help%20me%20with%20university%20application%20deadlines.">
+        Ask on WhatsApp
+      </a>
+    </div>
+  </section>
+
+  <!-- NOTICE -->
+  <section class="section" style="padding-block:24px 0;">
+    <div class="container">
+      <div class="callout">
+        <svg class="icon" width="18" height="18"><use href="#i-alert"/></svg>
+        <div>
+          <strong>Important:</strong> Some universities have different closing dates for specific programmes (e.g. Health Sciences).
+          Where a date reads &ldquo;Varies&rdquo;, the university opens applications later in the year and closes them per faculty.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEADLINES TABLE -->
+  <section class="section">
+    <div class="container">
+      <div class="table-wrap">
+        <table class="dl-table" id="dlTable">
+          <thead>
+            <tr>
+              <th>University</th>
+              <th>Opens</th>
+              <th>Closes</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr><td class="uni-name">University of Pretoria (UP)</td><td class="opens">01 April 2026</td><td class="closes">30 June 2026</td><td class="notes">Some earlier deadlines apply</td></tr>
+            <tr><td class="uni-name">University of the Witwatersrand (Wits)</td><td class="opens">01 March 2026</td><td class="closes">30 June / 30 September 2026</td><td class="notes">Depends on programme</td></tr>
+
+            <tr><td class="uni-name">University of Cape Town (UCT)</td><td class="opens">01 April 2026</td><td class="closes">31 July 2026</td><td class="notes">Standard deadline</td></tr>
+            <tr><td class="uni-name">Stellenbosch University (SU)</td><td class="opens">01 April 2026</td><td class="closes">31 July 2026</td><td class="notes">Standard deadline</td></tr>
+            <tr><td class="uni-name">Sefako Makgatho Health Sciences University (SMU)</td><td class="opens">01 April 2026</td><td class="closes">31 July 2026</td><td class="notes">Health sciences early closing</td></tr>
+
+            <tr><td class="uni-name">Nelson Mandela University (NMU)</td><td class="opens">01 April 2026</td><td class="closes">03 August 2026</td><td class="notes">Standard deadline</td></tr>
+
+            <tr><td class="uni-name">North-West University (NWU)</td><td class="opens">01 March 2026</td><td class="closes">31 August 2026</td><td class="notes">Standard deadline</td></tr>
+
+            <tr><td class="uni-name">Cape Peninsula University of Technology (CPUT)</td><td class="opens">May 2026</td><td class="closes">30 September 2026</td><td class="notes">Standard deadline</td></tr>
+            <tr><td class="uni-name">Central University of Technology (CUT)</td><td class="opens">April/May 2026</td><td class="closes">30 September 2026</td><td class="notes">Standard deadline</td></tr>
+            <tr><td class="uni-name">Durban University of Technology (DUT)</td><td class="opens">01 April 2026</td><td class="closes">30 September 2026</td><td class="notes">Standard deadline</td></tr>
+            <tr><td class="uni-name">Mangosuthu University of Technology (MUT)</td><td class="opens">01 April 2026</td><td class="closes">30 September 2026</td><td class="notes">Standard deadline</td></tr>
+            <tr><td class="uni-name">Rhodes University (RU)</td><td class="opens">01 April 2026</td><td class="closes">30 September 2026</td><td class="notes">Standard deadline</td></tr>
+            <tr><td class="uni-name">Sol Plaatje University (SPU)</td><td class="opens">01 April 2026</td><td class="closes">30 September 2026</td><td class="notes">Standard deadline</td></tr>
+            <tr><td class="uni-name">Tshwane University of Technology (TUT)</td><td class="opens">March/April 2026</td><td class="closes">30 September 2026</td><td class="notes">Standard deadline</td></tr>
+            <tr><td class="uni-name">University of Fort Hare (UFH)</td><td class="opens">01 April 2026</td><td class="closes">30 September 2026</td><td class="notes">Standard deadline</td></tr>
+            <tr><td class="uni-name">University of Johannesburg (UJ)</td><td class="opens">01 April 2026</td><td class="closes">30 September 2026</td><td class="notes">Standard deadline</td></tr>
+            <tr><td class="uni-name">University of KwaZulu-Natal (UKZN)</td><td class="opens">March/April 2026</td><td class="closes">30 September 2026</td><td class="notes">Standard deadline</td></tr>
+            <tr><td class="uni-name">University of Limpopo (UL)</td><td class="opens">01 April 2026</td><td class="closes">30 September 2026</td><td class="notes">Standard deadline</td></tr>
+            <tr><td class="uni-name">University of Mpumalanga (UMP)</td><td class="opens">01 April 2026</td><td class="closes">30 September 2026</td><td class="notes">Standard deadline</td></tr>
+            <tr><td class="uni-name">University of the Free State (UFS)</td><td class="opens">01 April 2026</td><td class="closes">30 September 2026</td><td class="notes">Standard deadline</td></tr>
+            <tr><td class="uni-name">University of the Western Cape (UWC)</td><td class="opens">01 April 2026</td><td class="closes">30 September 2026</td><td class="notes">Standard deadline</td></tr>
+            <tr><td class="uni-name">University of Venda (UNIVEN)</td><td class="opens">01 April 2026</td><td class="closes">30 September 2026</td><td class="notes">Standard deadline</td></tr>
+            <tr><td class="uni-name">University of Zululand (UNIZULU)</td><td class="opens">01 April 2026</td><td class="closes">30 September 2026</td><td class="notes">Standard deadline</td></tr>
+            <tr><td class="uni-name">Vaal University of Technology (VUT)</td><td class="opens">April/May 2026</td><td class="closes">30 September 2026</td><td class="notes">Standard deadline</td></tr>
+            <tr><td class="uni-name">Walter Sisulu University (WSU)</td><td class="opens">01 April 2026</td><td class="closes">30 September 2026</td><td class="notes">Standard deadline</td></tr>
+
+            <tr><td class="uni-name">UNISA</td><td class="opens">01 September 2026</td><td class="closes">Varies<span class="badge-soon">Late cycle</span></td><td class="notes">Closes per faculty, later than contact universities</td></tr>
+
+          </tbody>
+        </table>
+      </div>
+
+      <!-- NO RESULTS -->
+      <div class="empty" id="dlEmpty" hidden style="margin-top:20px;">
+        <strong>No matching universities</strong>
+        <p class="muted">Try a different name or abbreviation, or ask us directly on WhatsApp.</p>
+        <a class="btn btn-primary" target="_blank" rel="noopener noreferrer"
+           href="https://wa.me/27664687222?text=Hi%20Kasi2Campus%2C%20please%20help%20me%20with%20university%20application%20deadlines.">
+          Ask on WhatsApp
+        </a>
+      </div>
+
+      <p class="muted small" style="margin-top:16px;">
+        Rows are sorted by closing date. Last updated: <span id="lastUpdated"></span>
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta-wrap" style="padding-top:0;">
+    <div class="container">
+      <div class="cta">
+        <div>
+          <h2>Don&rsquo;t miss your closing date</h2>
+          <p>Let Kasi2Campus track deadlines and submit your applications correctly and on time.</p>
+        </div>
+        <div class="actions">
+          <a class="btn btn-accent" href="apply.html">Apply Now</a>
+          <a class="btn btn-outline-light" href="pricing.html">View Pricing</a>
+          <a class="btn btn-outline-light" target="_blank" rel="noopener noreferrer"
+             href="https://wa.me/27664687222?text=Hi%20Kasi2Campus%2C%20I%20want%20help%20with%20my%20applications.">
+            Chat on WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <img src="logo.png" alt="Kasi2Campus logo" style="width:64px; height:64px; object-fit:contain; border-radius:16px; background:#fff;" />
+      <div>
+        <strong>Kasi2Campus</strong>
+        <p>You focus on passing. We focus on your future.</p>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <h4>Services</h4>
+      <a href="pricing.html">Pricing</a>
+      <a href="apply.html">Apply</a>
+      <a href="calculator.html">APS Calculator</a>
+      <a href="contact.html">Contact</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Resources</h4>
+      <a href="faq.html">FAQ</a>
+      <a href="deadlines.html">Deadlines</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <a href="privacy-policy.html">Privacy Policy</a>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    © <span id="year">2026</span> Kasi2Campus. All rights reserved.
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+  const y = document.getElementById("year");
+  if (y) y.textContent = new Date().getFullYear();
+
+  const lu = document.getElementById("lastUpdated");
+  if (lu) lu.textContent = new Date().toLocaleDateString(undefined, { year: "numeric", month: "long", day: "numeric" });
+
+  // Search filter
+  const input = document.getElementById("dlSearch");
+  const clearBtn = document.getElementById("dlClear");
+  const table = document.getElementById("dlTable");
+  const empty = document.getElementById("dlEmpty");
+  const rows = table ? Array.from(table.querySelectorAll("tbody tr")) : [];
+
+  function filterRows() {
+    const q = (input.value || "").toLowerCase().trim();
+    let visible = 0;
+    rows.forEach(r => {
+      const match = r.textContent.toLowerCase().includes(q);
+      r.style.display = match ? "" : "none";
+      if (match) visible++;
+    });
+    if (empty) empty.hidden = visible !== 0;
+    if (clearBtn) clearBtn.hidden = q.length === 0;
+  }
+
+  if (input) input.addEventListener("input", filterRows);
+  if (clearBtn) clearBtn.addEventListener("click", () => {
+    input.value = "";
+    filterRows();
+    input.focus();
+  });
+</script>
+</body>
+</html>

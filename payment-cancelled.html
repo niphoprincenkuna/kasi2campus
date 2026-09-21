@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Kasi2Campus | Payment Cancelled</title>
+<link rel="icon" href="assets/logo-emblem.png" type="image/png" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css" />
+
+<style>
+  .status-wrap { min-height: calc(100vh - 158px); display:flex; align-items:center; justify-content:center; padding: 48px 20px; background: var(--bg-soft); }
+  .status-card { background: var(--surface); border:1px solid var(--line); border-radius:20px; padding:48px 40px; max-width:480px; width:100%; text-align:center; box-shadow: 0 24px 60px -24px rgba(15,42,68,.25); animation: statusFadeUp .6s ease both; }
+  .status-icon { width:92px; height:92px; border-radius:50%; margin:0 auto 22px; display:grid; place-items:center; background: var(--accent); animation: statusShake .5s ease .55s both; }
+  .status-icon svg { width:40px; height:40px; }
+  .status-icon svg path { fill:none; stroke:#fff; stroke-width:4; stroke-linecap:round; stroke-linejoin:round; stroke-dasharray:20; stroke-dashoffset:20; animation: statusDraw .4s ease .35s forwards; }
+  .status-card h1 { font-size:1.6rem; font-weight:800; }
+  .status-card p { margin-top:12px; }
+  .status-actions { display:flex; gap:12px; flex-wrap:wrap; justify-content:center; margin-top:24px; }
+
+  @keyframes statusFadeUp { from{opacity:0; transform:translateY(18px);} to{opacity:1; transform:translateY(0);} }
+  @keyframes statusDraw { to{ stroke-dashoffset:0; } }
+  @keyframes statusShake {
+    0% { opacity:0; transform:scale(.4); }
+    60% { opacity:1; transform:scale(1.08); }
+    75% { transform:translateX(-4px) scale(1); }
+    90% { transform:translateX(4px) scale(1); }
+    100% { opacity:1; transform:translateX(0) scale(1); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .status-card, .status-icon, .status-icon svg path { animation: none !important; opacity:1 !important; transform:none !important; stroke-dashoffset:0 !important; }
+  }
+</style>
+</head>
+
+<body>
+
+<header class="site-header">
+  <nav class="navbar container" style="justify-content:space-between;">
+    <a class="brand" href="index.html" aria-label="Kasi2Campus home">
+      <img src="assets/logo-emblem.png" alt="Kasi2Campus logo" style="height:40px; width:auto;" />
+      <span class="brand-name">Kasi<i>2</i>Campus</span>
+    </a>
+    <a class="btn btn-ghost" href="index.html">Back to Home</a>
+  </nav>
+</header>
+
+<main>
+  <section class="status-wrap">
+    <div class="status-card">
+      <div class="status-icon">
+        <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </div>
+
+      <h1>Payment Cancelled</h1>
+      <p class="muted">Your payment was not completed. Don&rsquo;t worry &mdash; you can try again anytime.</p>
+
+      <div class="status-actions">
+        <a href="pricing.html" class="btn btn-primary">Try Again</a>
+        <a href="apply.html" class="btn btn-ghost">Continue Application</a>
+        <a href="https://wa.me/27664687222?text=Hi%20Kasi2Campus%2C%20I%20tried%20to%20pay%20but%20it%20didn%E2%80%99t%20work."
+           target="_blank" rel="noopener noreferrer" class="btn btn-ghost">
+          Chat on WhatsApp
+        </a>
+      </div>
+
+      <p class="muted small" style="margin-top:20px;">
+        If money was deducted from your account, please contact us immediately.
+      </p>
+    </div>
+  </section>
+</main>
+
+<footer style="padding:24px 0;">
+  <div class="container muted small" style="text-align:center;">© <span id="year"></span> Kasi2Campus. All rights reserved.</div>
+</footer>
+
+<script>
+  const y = document.getElementById("year");
+  if (y) y.textContent = new Date().getFullYear();
+</script>
+</body>
+</html>

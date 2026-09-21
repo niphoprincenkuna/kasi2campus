@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Kasi2Campus | Pricing</title>
+<meta name="description" content="Once-off prices for university and college application support. Compare Kasi2Campus packages and pay securely with PayFast." />
+<link rel="icon" href="assets/logo-emblem.png" type="image/png" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css" />
+
+<!-- Pricing page styles. Paste into css/style.css if you prefer a single stylesheet. -->
+<style>
+  /* ---------- Package rows ---------- */
+  .plans-section { padding-block: 36px 72px; }
+
+  .plans-head,
+  .plan {
+    display: grid;
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr) repeat(3, minmax(0, .8fr)) minmax(0, 1.25fr);
+    gap: 20px;
+    align-items: center;
+  }
+  .plans-head { padding: 0 26px 12px 30px; font-size: 0.78rem; font-weight: 700; color: var(--muted); }
+  .plans-head span:nth-child(n+3):nth-child(-n+5) { text-align: center; }
+
+  .plans { display: grid; gap: 18px; }
+  .plan {
+    position: relative; padding: 20px 26px 20px 30px;
+    background: var(--surface); border: 1px solid var(--line); border-radius: 16px;
+  }
+  .plan::before {
+    content: ""; position: absolute; left: 0; top: 16px; bottom: 16px; width: 5px;
+    border-radius: 0 5px 5px 0; background: var(--tone);
+  }
+  .plan.featured {
+    padding: 19px 25px 19px 29px;
+    border: 2px solid var(--primary);
+    box-shadow: 0 18px 34px -18px rgba(42, 120, 171, .55);
+  }
+  .plan-flag {
+    position: absolute; top: -13px; left: 28px;
+    padding: 3px 12px; border-radius: 999px;
+    background: var(--accent); color: var(--on-accent);
+    font-size: 0.75rem; font-weight: 700;
+  }
+
+  .plan-id h3 { font-size: 1.25rem; font-weight: 800; color: var(--tone); }
+  .plan-id p { margin-top: 4px; font-size: 0.88rem; line-height: 1.4; color: var(--muted); }
+
+  .plan-cell { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+  .plan-cell.mark-cell { align-items: center; }
+  .plan-apps { font-size: 0.95rem; font-weight: 700; }
+
+  .mark { display: inline-flex; align-items: center; gap: 8px; font-size: 0.85rem; font-weight: 600; }
+  .mark .icon { width: 28px; height: 28px; padding: 6px; border-radius: 50%; }
+  .mark.yes .icon { background: var(--teal-tint); color: var(--teal); }
+  .mark.no { color: var(--muted); }
+  .mark.no .icon { background: var(--bg-soft); border: 1px solid var(--line); color: var(--muted); }
+
+  .plan-price { display: flex; align-items: baseline; gap: 6px; margin-bottom: 10px; }
+  .plan-price strong { font-size: 2rem; font-weight: 800; line-height: 1; letter-spacing: -0.02em; color: var(--tone); }
+  .plan-price span { font-size: 0.82rem; color: var(--muted); }
+  .plan-buy .btn { width: 100%; }
+
+  /* Visually hidden on desktop, visible on narrow screens */
+  .pl-vh { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+  @media (max-width: 900px) {
+    .plans-head { display: none; }
+    .plan, .plan.featured { grid-template-columns: 1fr 1fr; gap: 16px; padding: 22px 20px 20px 24px; }
+    .plan.featured { padding: 21px 19px 19px 23px; }
+    .plan-id, .plan-buy { grid-column: 1 / -1; }
+    .plan-buy { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 16px; border-top: 1px solid var(--line); }
+    .plan-buy .plan-price { margin: 0; }
+    .plan-buy form { flex: 0 1 210px; }
+    .plan-cell.mark-cell { align-items: flex-start; }
+    .pl-vh { position: static; width: auto; height: auto; margin: 0; overflow: visible; clip: auto; white-space: normal; }
+    .cell-label { font-size: 0.78rem; font-weight: 600; color: var(--muted); }
+  }
+  @media (max-width: 420px) {
+    .plan-buy { flex-direction: column; align-items: stretch; }
+    .plan-buy form { flex: none; }
+  }
+
+  /* ---------- Add-ons ---------- */
+  .addons { margin-top: 48px; padding: 28px; border: 1px solid var(--line); border-radius: 18px; background: var(--bg-soft); }
+  .addons-top { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px 32px; }
+  .addons h2 { font-size: 1.4rem; font-weight: 800; }
+  .addons-top p { margin-top: 6px; max-width: 44em; }
+  .addons-price { text-align: right; line-height: 1.1; }
+  .addons-price strong { display: block; font-size: 2.3rem; font-weight: 800; letter-spacing: -0.02em; color: var(--link); }
+  .addons-price span { font-size: 0.85rem; color: var(--muted); }
+  .addons-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 22px; }
+  .addons-list li { display: flex; align-items: center; gap: 14px; padding: 14px 16px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; }
+  .addons-list .ico { width: 44px; height: 44px; border-radius: 11px; display: grid; place-items: center; flex: none; background: var(--blue-tint); color: var(--link); }
+  .addons-list li:nth-child(2) .ico { background: var(--teal-tint); color: var(--teal); }
+  .addons-list li:nth-child(3) .ico { background: var(--red-tint); color: var(--red); }
+  .addons-list strong { display: block; font-size: 0.95rem; line-height: 1.25; }
+  .addons-list div span { display: block; margin-top: 2px; font-size: 0.8rem; line-height: 1.35; color: var(--muted); }
+  .addons .text-link { margin-top: 18px; }
+  @media (max-width: 800px) {
+    .addons { padding: 22px 20px; }
+    .addons-price { text-align: left; }
+    .addons-list { grid-template-columns: 1fr; }
+  }
+
+  /* ---------- Steps band (three items) ---------- */
+  .section-head.center { gap: 0; }
+  .band-3 { grid-template-columns: repeat(3, 1fr); }
+  .band-3 .band-item strong { font-size: 1.1rem; line-height: 1.25; letter-spacing: 0; margin-bottom: 2px; }
+  @media (max-width: 980px) {
+    .band-3 { grid-template-columns: 1fr; row-gap: 20px; }
+    .band-3 .band-item + .band-item { border-left: 0; }
+  }
+</style>
+</head>
+
+<body>
+<!-- Icon sprite -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-mail" viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></symbol>
+    <symbol id="i-calc" viewBox="0 0 24 24"><rect width="16" height="20" x="4" y="2" rx="2"/><line x1="8" x2="16" y1="6" y2="6"/><line x1="16" x2="16" y1="14" y2="18"/><path d="M16 10h.01M12 10h.01M8 10h.01M12 14h.01M8 14h.01M12 18h.01M8 18h.01"/></symbol>
+    <symbol id="i-cap" viewBox="0 0 24 24"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></symbol>
+    <symbol id="i-brief" viewBox="0 0 24 24"><path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/><rect width="20" height="14" x="2" y="6" rx="2"/></symbol>
+    <symbol id="i-send" viewBox="0 0 24 24"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"/><path d="m21.854 2.147-10.94 10.939"/></symbol>
+    <symbol id="i-cal" viewBox="0 0 24 24"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></symbol>
+  </defs>
+</svg>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="container">
+    <a href="calculator.html"><svg class="icon" width="16" height="16"><use href="#i-calc"/></svg><span><strong>Know your APS</strong> before you apply</span></a>
+    <div class="links">
+      <a href="deadlines.html"><svg class="icon" width="16" height="16"><use href="#i-cal"/></svg>Deadlines</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html"><svg class="icon" width="16" height="16"><use href="#i-mail"/></svg>Contact</a>
+    </div>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<header class="site-header">
+  <nav class="navbar container" aria-label="Main">
+    <a class="brand" href="index.html" aria-label="Kasi2Campus home">
+      <span class="emblem" role="img" aria-label="Kasi2Campus logo"></span>
+      <span class="brand-name">Kasi<i>2</i>Campus</span>
+    </a>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="institutions.html">Institutions</a></li>
+      <li><a href="courses.html">Courses</a></li>
+      <li><a class="active" href="pricing.html" aria-current="page">Pricing</a></li>
+      <li><a href="apply.html">Apply</a></li>
+      <li><a href="portal/index.html">Student Portal</a></li>
+      <li><a href="calculator.html">APS &amp; Average Calculator</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+
+    <a class="btn btn-accent nav-cta" href="apply.html">Apply Now</a>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navLinks">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+  </nav>
+</header>
+
+<main id="main">
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="container">
+      <div>
+        <nav class="crumbs" aria-label="Breadcrumb">
+          <a href="index.html">Home</a><span aria-hidden="true">/</span><span aria-current="page">Pricing</span>
+        </nav>
+        <h1>Pick the package that fits your applications</h1>
+        <p>Pay once, and we help you apply. Compare what each package includes, then pay securely with PayFast.</p>
+      </div>
+      <div class="hero-facts" aria-label="Pricing at a glance">
+        <div class="fact"><strong>R100</strong><span>Starting price</span></div>
+        <div class="fact t"><strong>R50</strong><span>Per add-on service</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PACKAGES -->
+  <section class="section plans-section" aria-labelledby="plans-title">
+    <div class="container">
+      <h2 class="sr-only" id="plans-title">Packages</h2>
+
+      <div class="callout">
+        <svg class="icon" width="20" height="20" aria-hidden="true"><use href="#i-shield"/></svg>
+        <p>Payments are handled by PayFast. You pay on PayFast’s own secure page.</p>
+      </div>
+
+      <!-- Column labels (desktop only; each row repeats its labels for screen readers and small screens) -->
+      <div class="plans-head" aria-hidden="true">
+        <span>Package</span>
+        <span>Applications</span>
+        <span>NSFAS</span>
+        <span>Follow-ups</span>
+        <span>Career guidance</span>
+        <span>Price</span>
+      </div>
+
+      <ul class="plans" aria-label="Packages">
+
+        <!-- BASIC -->
+        <li class="plan tone-navy">
+          <div class="plan-id">
+            <h3>Basic</h3>
+            <p>A few applications, done right.</p>
+          </div>
+          <div class="plan-cell">
+            <span class="cell-label pl-vh">Applications</span>
+            <strong class="plan-apps">5 applications</strong>
+          </div>
+          <div class="plan-cell mark-cell">
+            <span class="cell-label pl-vh">NSFAS application</span>
+            <span class="mark no"><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg><span class="pl-vh">Not included</span></span>
+          </div>
+          <div class="plan-cell mark-cell">
+            <span class="cell-label pl-vh">Follow-ups</span>
+            <span class="mark no"><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg><span class="pl-vh">Not included</span></span>
+          </div>
+          <div class="plan-cell mark-cell">
+            <span class="cell-label pl-vh">Career guidance</span>
+            <span class="mark no"><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg><span class="pl-vh">Not included</span></span>
+          </div>
+          <div class="plan-buy">
+            <div class="plan-price"><strong>R100</strong><span>once-off</span></div>
+            <form class="payfast-form" action="https://payment.payfast.io/eng/process" method="post"
+                  data-package="Basic Package" data-amount="100">
+              <input type="hidden" name="cmd" value="_paynow">
+              <input type="hidden" name="receiver" value="33759143">
+              <input type="hidden" name="return_url" value="https://niphoprincenkuna.github.io/kasi2campus/thank-you.html">
+              <input type="hidden" name="cancel_url" value="https://niphoprincenkuna.github.io/kasi2campus/payment-cancelled.html">
+              <input type="hidden" name="amount" value="100">
+              <input type="hidden" name="item_name" value="Basic Package">
+              <input type="hidden" name="item_description" value="5 Applications | No Follow-ups">
+              <button class="btn btn-ghost btn-sm" type="submit">Pay R100</button>
+            </form>
+          </div>
+        </li>
+
+        <!-- STANDARD -->
+        <li class="plan tone-blue">
+          <div class="plan-id">
+            <h3>Standard</h3>
+            <p>Room for a backup or two.</p>
+          </div>
+          <div class="plan-cell">
+            <span class="cell-label pl-vh">Applications</span>
+            <strong class="plan-apps">10 applications</strong>
+          </div>
+          <div class="plan-cell mark-cell">
+            <span class="cell-label pl-vh">NSFAS application</span>
+            <span class="mark no"><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg><span class="pl-vh">Not included</span></span>
+          </div>
+          <div class="plan-cell mark-cell">
+            <span class="cell-label pl-vh">Follow-ups</span>
+            <span class="mark no"><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg><span class="pl-vh">Not included</span></span>
+          </div>
+          <div class="plan-cell mark-cell">
+            <span class="cell-label pl-vh">Career guidance</span>
+            <span class="mark no"><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg><span class="pl-vh">Not included</span></span>
+          </div>
+          <div class="plan-buy">
+            <div class="plan-price"><strong>R150</strong><span>once-off</span></div>
+            <form class="payfast-form" action="https://payment.payfast.io/eng/process" method="post"
+                  data-package="Standard Package" data-amount="150">
+              <input type="hidden" name="cmd" value="_paynow">
+              <input type="hidden" name="receiver" value="33759143">
+              <input type="hidden" name="return_url" value="https://niphoprincenkuna.github.io/kasi2campus/thank-you.html">
+              <input type="hidden" name="cancel_url" value="https://niphoprincenkuna.github.io/kasi2campus/payment-cancelled.html">
+              <input type="hidden" name="amount" value="150">
+              <input type="hidden" name="item_name" value="Standard Package">
+              <input type="hidden" name="item_description" value="10 Applications | No Follow-ups">
+              <button class="btn btn-ghost btn-sm" type="submit">Pay R150</button>
+            </form>
+          </div>
+        </li>
+
+        <!-- COMPREHENSIVE -->
+        <li class="plan tone-teal">
+          <div class="plan-id">
+            <h3>Comprehensive</h3>
+            <p>Apply everywhere, with NSFAS covered.</p>
+          </div>
+          <div class="plan-cell">
+            <span class="cell-label pl-vh">Applications</span>
+            <strong class="plan-apps">All institutions</strong>
+          </div>
+          <div class="plan-cell mark-cell">
+            <span class="cell-label pl-vh">NSFAS application</span>
+            <span class="mark yes"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span class="pl-vh">Included</span></span>
+          </div>
+          <div class="plan-cell mark-cell">
+            <span class="cell-label pl-vh">Follow-ups</span>
+            <span class="mark no"><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg><span class="pl-vh">Not included</span></span>
+          </div>
+          <div class="plan-cell mark-cell">
+            <span class="cell-label pl-vh">Career guidance</span>
+            <span class="mark no"><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg><span class="pl-vh">Not included</span></span>
+          </div>
+          <div class="plan-buy">
+            <div class="plan-price"><strong>R200</strong><span>once-off</span></div>
+            <form class="payfast-form" action="https://payment.payfast.io/eng/process" method="post"
+                  data-package="Comprehensive Package" data-amount="200">
+              <input type="hidden" name="cmd" value="_paynow">
+              <input type="hidden" name="receiver" value="33759143">
+              <input type="hidden" name="return_url" value="https://niphoprincenkuna.github.io/kasi2campus/thank-you.html">
+              <input type="hidden" name="cancel_url" value="https://niphoprincenkuna.github.io/kasi2campus/payment-cancelled.html">
+              <input type="hidden" name="amount" value="200">
+              <input type="hidden" name="item_name" value="Comprehensive Package">
+              <input type="hidden" name="item_description" value="All Institutions | NSFAS Application | No Follow-ups">
+              <button class="btn btn-ghost btn-sm" type="submit">Pay R200</button>
+            </form>
+          </div>
+        </li>
+
+        <!-- PREMIUM -->
+        <li class="plan featured tone-red">
+          <span class="plan-flag">Recommended</span>
+          <div class="plan-id">
+            <h3>Premium</h3>
+            <p>Everything included, start to finish.</p>
+          </div>
+          <div class="plan-cell">
+            <span class="cell-label pl-vh">Applications</span>
+            <strong class="plan-apps">All institutions</strong>
+          </div>
+          <div class="plan-cell mark-cell">
+            <span class="cell-label pl-vh">NSFAS application</span>
+            <span class="mark yes"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span class="pl-vh">Included</span></span>
+          </div>
+          <div class="plan-cell mark-cell">
+            <span class="cell-label pl-vh">Follow-ups</span>
+            <span class="mark yes"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span class="pl-vh">Included</span></span>
+          </div>
+          <div class="plan-cell mark-cell">
+            <span class="cell-label pl-vh">Career guidance</span>
+            <span class="mark yes"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span class="pl-vh">Included</span></span>
+          </div>
+          <div class="plan-buy">
+            <div class="plan-price"><strong>R300</strong><span>once-off</span></div>
+            <form class="payfast-form" action="https://payment.payfast.io/eng/process" method="post"
+                  data-package="Premium Package" data-amount="300">
+              <input type="hidden" name="cmd" value="_paynow">
+              <input type="hidden" name="receiver" value="33759143">
+              <input type="hidden" name="return_url" value="https://niphoprincenkuna.github.io/kasi2campus/thank-you.html">
+              <input type="hidden" name="cancel_url" value="https://niphoprincenkuna.github.io/kasi2campus/payment-cancelled.html">
+              <input type="hidden" name="amount" value="300">
+              <input type="hidden" name="item_name" value="Premium Package">
+              <input type="hidden" name="item_description" value="All Institutions | NSFAS | Follow-ups | Career Guidance">
+              <button class="btn btn-accent btn-sm" type="submit">Pay R300</button>
+            </form>
+          </div>
+        </li>
+      </ul>
+
+      <!-- ADD-ONS -->
+      <div class="addons" role="region" aria-labelledby="addons-title">
+        <div class="addons-top">
+          <div>
+            <h2 id="addons-title">Add what your package is missing</h2>
+            <p class="muted">NSFAS applications, follow-ups and career guidance can each be added to any package that doesn’t already include them.</p>
+          </div>
+          <div class="addons-price"><strong>R50</strong><span>per service</span></div>
+        </div>
+
+        <ul class="addons-list">
+          <li>
+            <span class="ico"><svg class="icon" width="22" height="22" aria-hidden="true"><use href="#i-cap"/></svg></span>
+            <div><strong>NSFAS application</strong><span>Included in Comprehensive and Premium</span></div>
+          </li>
+          <li>
+            <span class="ico"><svg class="icon" width="22" height="22" aria-hidden="true"><use href="#i-send"/></svg></span>
+            <div><strong>Follow-ups</strong><span>Included in Premium</span></div>
+          </li>
+          <li>
+            <span class="ico"><svg class="icon" width="22" height="22" aria-hidden="true"><use href="#i-brief"/></svg></span>
+            <div><strong>Career guidance</strong><span>Included in Premium</span></div>
+          </li>
+        </ul>
+
+        <a class="text-link" href="contact.html">Ask about add-ons <svg class="icon" width="16" height="16" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT HAPPENS NEXT -->
+  <section class="section" style="padding-top:0" aria-labelledby="next-title">
+    <div class="container">
+      <div class="section-head center">
+        <h2 id="next-title">What happens after you choose</h2>
+        <p class="muted">Three steps from picking a package to getting started.</p>
+      </div>
+      <div class="band band-3">
+        <div class="band-item"><span class="ico"><svg class="icon" width="26" height="26" aria-hidden="true"><use href="#i-check"/></svg></span><div><strong>Choose a package</strong><span>Match it to how many applications you need.</span></div></div>
+        <div class="band-item"><span class="ico"><svg class="icon" width="26" height="26" aria-hidden="true"><use href="#i-shield"/></svg></span><div><strong>Pay with PayFast</strong><span>You’re taken to PayFast’s secure page.</span></div></div>
+        <div class="band-item"><span class="ico"><svg class="icon" width="26" height="26" aria-hidden="true"><use href="#i-send"/></svg></span><div><strong>Message us on WhatsApp</strong><span>After you pay, you’re sent to WhatsApp so we can start.</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" style="padding-top:0" aria-labelledby="faq-title">
+    <div class="container faq-grid">
+      <div>
+        <h2 id="faq-title">Questions about pricing</h2>
+        <p class="muted">Quick answers before you pay. Need more? We’re happy to help.</p>
+        <a class="text-link" href="faq.html">See all FAQs <svg class="icon" width="16" height="16" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </div>
+      <div class="faq">
+        <details open>
+          <summary>Is this a once-off payment?</summary>
+          <div class="answer">Yes. Each package is a single payment. Add-on services are R50 each for packages that don’t already include them.</div>
+        </details>
+        <details>
+          <summary>Is my payment secure?</summary>
+          <div class="answer">Payments are handled by PayFast. You pay on PayFast’s own page, not on ours.</div>
+        </details>
+        <details>
+          <summary>Which package should I choose?</summary>
+          <div class="answer">If you want NSFAS, follow-ups and career guidance all covered, Premium is our recommended package. Not sure? <a href="contact.html">Contact us</a> and we’ll help you decide.</div>
+        </details>
+        <details>
+          <summary>Should I check my APS first?</summary>
+          <div class="answer">It helps you choose where to apply. Use the <a href="calculator.html">APS &amp; Average Calculator</a> to see where you stand.</div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta-wrap">
+    <div class="container">
+      <div class="cta">
+        <div>
+          <h2>Not sure which package fits?</h2>
+          <p>Send us a message and we’ll help you choose.</p>
+        </div>
+        <div class="actions">
+          <a class="btn btn-accent" href="contact.html">Contact Us</a>
+          <a class="btn btn-outline-light" href="apply.html">Start Application</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <span class="badge-logo"><span class="emblem" role="img" aria-label="Kasi2Campus logo"></span></span>
+      <div>
+        <strong>Kasi2Campus</strong>
+        <p>You focus on passing. We focus on your future.</p>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <h4>Services</h4>
+      <a href="pricing.html">Pricing</a>
+      <a href="apply.html">Apply</a>
+      <a href="calculator.html">APS Calculator</a>
+      <a href="contact.html">Contact</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Resources</h4>
+      <a href="faq.html">FAQ</a>
+      <a href="deadlines.html">Deadlines</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <a href="privacy-policy.html">Privacy Policy</a>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    © <span id="year">2026</span> Kasi2Campus. All rights reserved.
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+
+<!-- Save package selection + WhatsApp message data for the Apply and Thank You pages -->
+<script>
+  const WHATSAPP_NUMBER = "27664687222";
+
+  function buildWhatsAppMessage(pkg, amount) {
+    return `Hi Kasi2Campus, I just paid for the ${pkg} (R${amount}). Please assist me with my university applications.`;
+  }
+
+  document.querySelectorAll(".payfast-form").forEach(function (form) {
+    form.addEventListener("submit", function () {
+      const pkg = form.dataset.package;
+      const amount = form.dataset.amount;
+
+      try {
+        localStorage.setItem("k2c_selected_package", pkg);
+        localStorage.setItem("k2c_selected_amount", amount);
+        localStorage.setItem("k2c_whatsapp_number", WHATSAPP_NUMBER);
+        localStorage.setItem("k2c_whatsapp_message", buildWhatsAppMessage(pkg, amount));
+      } catch (e) {
+        // Storage can be blocked (e.g. private mode); the payment should still go ahead.
+      }
+    });
+  });
+</script>
+</body>
+</html>

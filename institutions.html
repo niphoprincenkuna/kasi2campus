@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Kasi2Campus | Institutions</title>
+<meta name="description" content="Browse all 26 public universities in South Africa, grouped by province, with links to each official website." />
+<link rel="icon" href="assets/logo-emblem.png" type="image/png" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+<!-- Icon sprite -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-mail" viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></symbol>
+    <symbol id="i-zap" viewBox="0 0 24 24"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></symbol>
+    <symbol id="i-calc" viewBox="0 0 24 24"><rect width="16" height="20" x="4" y="2" rx="2"/><line x1="8" x2="16" y1="6" y2="6"/><line x1="16" x2="16" y1="14" y2="18"/><path d="M16 10h.01M12 10h.01M8 10h.01M12 14h.01M8 14h.01M12 18h.01M8 18h.01"/></symbol>
+    <symbol id="i-cap" viewBox="0 0 24 24"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></symbol>
+    <symbol id="i-book" viewBox="0 0 24 24"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/><path d="M3.22 12H9.5l.5-1 2 4.5 2-7 1.5 3.5h5.27"/></symbol>
+    <symbol id="i-brief" viewBox="0 0 24 24"><path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/><rect width="20" height="14" x="2" y="6" rx="2"/></symbol>
+    <symbol id="i-wrench" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></symbol>
+    <symbol id="i-monitor" viewBox="0 0 24 24"><rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></symbol>
+    <symbol id="i-scale" viewBox="0 0 24 24"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></symbol>
+    <symbol id="i-send" viewBox="0 0 24 24"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"/><path d="m21.854 2.147-10.94 10.939"/></symbol>
+    <symbol id="i-cal" viewBox="0 0 24 24"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></symbol>
+    <symbol id="i-building" viewBox="0 0 24 24"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4M10 10h4M10 14h4M10 18h4"/></symbol>
+      <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></symbol>
+    <symbol id="i-external" viewBox="0 0 24 24"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol>
+    <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol>
+  </defs>
+</svg>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="container">
+    <a href="calculator.html"><svg class="icon" width="16" height="16"><use href="#i-calc"/></svg><span><strong>Know your APS</strong> before you apply</span></a>
+    <div class="links">
+      <a href="deadlines.html"><svg class="icon" width="16" height="16"><use href="#i-cal"/></svg>Deadlines</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html"><svg class="icon" width="16" height="16"><use href="#i-mail"/></svg>Contact</a>
+    </div>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<header class="site-header">
+  <nav class="navbar container" aria-label="Main">
+    <a class="brand" href="index.html" aria-label="Kasi2Campus home">
+      <span class="emblem" role="img" aria-label="Kasi2Campus logo"></span>
+      <span class="brand-name">Kasi<i>2</i>Campus</span>
+    </a>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a class="active" href="institutions.html" aria-current="page">Institutions</a></li>
+      <li><a href="courses.html">Courses</a></li>
+      <li><a href="pricing.html">Pricing</a></li>
+      <li><a href="apply.html">Apply</a></li>
+      <li><a href="portal/index.html">Student Portal</a></li>
+      <li><a href="calculator.html">APS &amp; Average Calculator</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+
+    <a class="btn btn-accent nav-cta" href="apply.html">Apply Now</a>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navLinks">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+  </nav>
+</header>
+
+<main id="main">
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="container">
+      <div>
+        <nav class="crumbs" aria-label="Breadcrumb">
+          <a href="index.html">Home</a>
+          <svg class="icon" width="14" height="14"><use href="#i-chevron"/></svg>
+          <span aria-current="page">Institutions</span>
+        </nav>
+        <h1>Universities in South Africa</h1>
+        <p>All 26 public universities, grouped by province. Tap any card to open the university’s official homepage.</p>
+      </div>
+      <div class="hero-facts">
+        <div class="fact"><strong>26</strong><span>public universities</span></div>
+        <div class="fact t"><strong>9</strong><span>provinces</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FILTERS -->
+  <section class="filters" aria-label="Find a university">
+    <div class="container">
+      <div class="search">
+        <label class="sr-only" for="instSearch">Search universities</label>
+        <svg class="icon lead-ico"><use href="#i-search"/></svg>
+        <input id="instSearch" type="search" placeholder="Search e.g. Wits, UP or Durban" autocomplete="off" />
+        <button class="clear" id="instClear" type="button" aria-label="Clear search" hidden><svg class="icon" width="18" height="18"><use href="#i-x"/></svg></button>
+      </div>
+
+      <div class="chips" role="group" aria-label="Filter by province">
+        <button class="chip" type="button" data-prov="all" aria-pressed="true">All provinces <span class="n">26</span></button>
+<button class="chip" type="button" data-prov="gauteng" aria-pressed="false">Gauteng <span class="n">7</span></button>
+<button class="chip" type="button" data-prov="eastern-cape" aria-pressed="false">Eastern Cape <span class="n">4</span></button>
+<button class="chip" type="button" data-prov="kwazulu-natal" aria-pressed="false">KwaZulu-Natal <span class="n">4</span></button>
+<button class="chip" type="button" data-prov="western-cape" aria-pressed="false">Western Cape <span class="n">4</span></button>
+<button class="chip" type="button" data-prov="free-state" aria-pressed="false">Free State <span class="n">2</span></button>
+<button class="chip" type="button" data-prov="limpopo" aria-pressed="false">Limpopo <span class="n">2</span></button>
+<button class="chip" type="button" data-prov="mpumalanga" aria-pressed="false">Mpumalanga <span class="n">1</span></button>
+<button class="chip" type="button" data-prov="north-west" aria-pressed="false">North West <span class="n">1</span></button>
+<button class="chip" type="button" data-prov="northern-cape" aria-pressed="false">Northern Cape <span class="n">1</span></button>
+      </div>
+
+      <div class="result-bar">
+        <p id="resultCount" aria-live="polite">Showing all 26 universities</p>
+        <div class="legend" aria-label="Colour key">
+          <span><i style="--c:#2A78AB"></i>Traditional</span>
+          <span><i style="--c:#1F7C7C"></i>University of Technology</span>
+          <span><i style="--c:#C82400"></i>Comprehensive</span>
+          <span><i style="--c:#1B3A5C"></i>Health Sciences</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESULTS -->
+  <section class="results" id="results" aria-label="Universities by province">
+    <div class="container">
+        <section class="prov" id="gauteng" aria-labelledby="h-gauteng">
+          <header class="prov-head">
+            <span class="pin"><svg class="icon"><use href="#i-pin"/></svg></span>
+            <h2 id="h-gauteng">Gauteng</h2>
+            <span class="count">7 universities</span>
+          </header>
+          <div class="inst-grid">
+            <a class="inst-card tone-navy" href="https://www.smu.ac.za/" target="_blank" rel="noopener noreferrer" data-search="sefako makgatho health sciences university smu ga-rankuwa, pretoria health sciences university gauteng">
+              <span class="inst-mono" aria-hidden="true">SMU</span>
+              <span class="inst-info">
+                <strong>Sefako Makgatho Health Sciences University</strong>
+                <span class="inst-meta"><svg class="icon" width="14" height="14"><use href="#i-pin"/></svg>Ga-Rankuwa, Pretoria</span>
+                <span class="inst-type">Health Sciences University</span>
+              </span>
+              <span class="inst-go" aria-hidden="true"><svg class="icon" width="16" height="16"><use href="#i-external"/></svg></span>
+              <span class="sr-only">Opens the official website in a new tab</span>
+            </a>
+            <a class="inst-card tone-teal" href="https://www.tut.ac.za/" target="_blank" rel="noopener noreferrer" data-search="tshwane university of technology tut pretoria university of technology gauteng">
+              <span class="inst-mono" aria-hidden="true">TUT</span>
+              <span class="inst-info">
+                <strong>Tshwane University of Technology</strong>
+                <span class="inst-meta"><svg class="icon" width="14" height="14"><use href="#i-pin"/></svg>Pretoria</span>
+                <span class="inst-type">University of Technology</span>
+              </span>
+              <span class="inst-go" aria-hidden="true"><svg class="icon" width="16" height="16"><use href="#i-external"/></svg></span>
+              <span class="sr-only">Opens the official website in a new tab</span>
+            </a>
+            <a class="inst-card tone-red" href="https://www.uj.ac.za/" target="_blank" rel="noopener noreferrer" data-search="university of johannesburg uj johannesburg comprehensive university gauteng">
+              <span class="inst-mono" aria-hidden="true">UJ</span>
+              <span class="inst-info">
+                <strong>University of Johannesburg</strong>
+                <span class="inst-meta"><svg class="icon" width="14" height="14"><use href="#i-pin"/></svg>Johannesburg</span>
+                <span class="inst-type">Comprehensive University</span>
+              </span>
+              <span class="inst-go" aria-hidden="true"><svg class="icon" width="16" height="16"><use href="#i-external"/></svg></span>
+              <span class="sr-only">Opens the official website in a new tab</span>
+            </a>
+            <a class="inst-card tone-blue" href="https://www.up.ac.za/" target="_blank" rel="noopener noreferrer" data-search="university of pretoria up pretoria traditional university gauteng">
+              <span class="inst-mono" aria-hidden="true">UP</span>
+              <span class="inst-info">
+                <strong>University of Pretoria</strong>
+                <span class="inst-meta"><svg class="icon" width="14" height="14"><use href="#i-pin"/></svg>Pretoria</span>
+                <span class="inst-type">Traditional University</span>
+              </span>
+              <span class="inst-go" aria-hidden="true"><svg class="icon" width="16" height="16"><use href="#i-external"/></svg></span>
+              <span class="sr-only">Opens the official website in a new tab</span>
+            </a>
+            <a class="inst-card tone-red" href="https://www.unisa.ac.za/" target="_blank" rel="noopener noreferrer" data-search="university of south africa unisa pretoria distance / comprehensive gauteng">
+              <span class="inst-mono" aria-hidden="true">UNISA</span>
+              <span class="inst-info">
+                <strong>University of South Africa</strong>
+                <span class="inst-meta"><svg class="icon" width="14" height="14"><use href="#i-pin"/></svg>Pretoria</span>
+                <span class="inst-type">Distance / Comprehensive</span>
+              </span>
+              <span class="inst-go" aria-hidden="true"><svg class="icon" width="16" height="16"><use href="#i-external"/></svg></span>
+              <span class="sr-only">Opens the official website in a new tab</span>
+            </a>
+            <a class="inst-card tone-blue" href="https://www.wits.ac.za/" target="_blank" rel="noopener noreferrer" data-search="university of the witwatersrand wits johannesburg traditional university gauteng">
+              <span class="inst-mono" aria-hidden="true">Wits</span>
+              <span class="inst-info">
+                <strong>University of the Witwatersrand</strong>
+                <span class="inst-meta"><svg class="icon" width="14" height="14"><use href="#i-pin"/></svg>Johannesburg</span>
+                <span class="inst-type">Traditional University</span>
+              </span>
+              <span class="inst-go" aria-hidden="true"><svg class="icon" width="16" height="16"><use href="#i-external"/></svg></span>
+              <span class="sr-only">Opens the official website in a new tab</span>
+            </a>
+            <a class="inst-card tone-teal" href="https://www.vut.ac.za/" target="_blank" rel="noopener noreferrer" data-search="vaal university of technology vut vanderbijlpark university of technology gauteng">
+              <span class="inst-mono" aria-hidden="true">VUT</span>
+              <span class="inst-info">
+                <strong>Vaal University of Technology</strong>
+                <span class="inst-meta"><svg class="icon" width="14" height="14"><use href="#i-pin"/></svg>Vanderbijlpark</span>
+                <span class="inst-type">University of Technology</span>
+              </span>
+              <span class="inst-go" aria-hidden="true"><svg class="icon" width="16" height="16"><use href="#i-external"/></svg></span>
+              <span class="sr-only">Opens the official website in a new tab</span>
+            </a>
+          </div>
+        </section>
+        <section class="prov" id="eastern-cape" aria-labelledby="h-eastern-cape">
+          <header class="prov-head">
+            <span class="pin"><svg class="icon"><use href="#i-pin"/></svg></span>
+            <h2 id="h-eastern-cape">Eastern Cape</h2>
+            <span class="count">4 universities</span>
+          </header>
+          <div class="inst-grid">
+            <a class="inst-card tone-red" href="https://www.mandela.ac.za/" target="_blank" rel="noopener noreferrer" data-search="nelson mandela university nmu gqeberha comprehensive university eastern cape">
+              <span class="inst-mono" aria-hidden="true">NMU</span>
+              <span class="inst-info">
+                <strong>Nelson Mandela University</strong>
+                <span class="inst-meta"><svg class="icon" width="14" height="14"><use href="#i-pin"/></svg>Gqeberha</span>
+                <span class="inst-type">Comprehensive University</span>
+              </span>
+              <span class="inst-go" aria-hidden="true"><svg class="icon" width="16" height="16"><use href="#i-external"/></svg></span>
+              <span class="sr-only">Opens the official website in a new tab</span>
+            </a>
+            <a class="inst-card tone-blue" href="https://www.ru.ac.za/" target="_blank" rel="noopener noreferrer" data-search="rhodes university rhodes makhanda traditional university eastern cape">
+              <span class="inst-mono" aria-hidden="true">Rhodes</span>
+              <span class="inst-info">
+                <strong>Rhodes University</strong>
+                <span class="inst-meta"><svg class="icon" width="14" height="14"><use href="#i-pin"/></svg>Makhanda</span>
+                <span class="inst-type">Traditional University</span>
+              </span>
+              <span class="inst-go" aria-hidden="true"><svg class="icon" width="16" height="16"><use href="#i-external"/></svg></span>
+              <span class="sr-only">Opens the official website in a new tab</span>
+            </a>
+            <a class="inst-card tone-blue" href="https://www.ufh.ac.za/" target="_blank" rel="noopener noreferrer" data-search="university of fort hare ufh alice traditional university eastern cape">
+              <span class="inst-mono" aria-hidden="true">UFH</span>
+              <span class="inst-info">
+                <strong>University of Fort Hare</strong>
+                <span class="inst-meta"><svg class="icon" width="14" height="14"><use href="#i-pin"/></svg>Alice</span>
+                <span class="inst-type">Traditional University</span>
+              </span>
+              <span class="inst-go" aria-hidden="true"><svg class="icon" width="16" height="16"><use href="#i-external"/></svg></span>
+              <span class="sr-only">Opens the official website in a new tab</span>
+            </a>
+            <a class="inst-card tone-red" href="https://www.wsu.ac.za/" target="_blank" rel="noopener noreferrer" data-search="walter sisulu university wsu mthatha comprehensive university eastern cape">
+              <span class="inst-mono" aria-hidden="true">WSU</span>
+              <span class="inst-info">
+                <strong>Walter Sisulu University</strong>
+                <span class="inst-meta"><svg class="icon" width="14" height="14"><use href="#i-pin"/></svg>Mthatha</span>
+                <span class="inst-type">Comprehensive University</span>
+              </span>
+              <span class="inst-go" aria-hidden="true"><svg class="icon" width="16" height="16"><use href="#i-external"/></svg></span>
+              <span class="sr-only">Opens the official website in a new tab</span>
+            </a>
+          </div>
+        </section>
+        <section class="prov" id="kwazulu-natal" aria-labelledby="h-kwazulu-natal">
+          <header class="prov-head">
+            <span class="pin"><svg class="icon"><use href="#i-pin"/></svg></span>
+            <h2 id="h-kwazulu-natal">KwaZulu-Natal</h2>
+            <span class="count">4 universities</span>
+          </header>
+          <div class="inst-grid">
+            <a class="inst-card tone-teal" href="https://www.dut.ac.za/" target="_blank" rel="noopener noreferrer" data-search="durban university of technology dut durban university of technology kwazulu-natal">
+              <span class="inst-mono" aria-hidden="true">DUT</span>
+              <span class="inst-info">
+                <strong>Durban University of Technology</strong>
+                <span class="inst-meta"><svg class="icon" width="14" height="14"><use href="#i-pin"/></svg>Durban</span>
+                <span class="inst-type">University of Technology</span>
+              </span>
+              <span class="inst-go" aria-hidden="true"><svg class="icon" width="16" height="16"><use href="#i-external"/></svg></span>
+              <span class="sr-only">Opens the official website in a new tab</span>
+            </a>
+            <a class="inst-card tone-teal" href="https://www.mut.ac.za/" target="_blank" rel="noopener noreferrer" data-search="mangosuthu university of technology mut umlazi, durban university of technology kwazulu-natal">
+              <span class="inst-mono" aria-hidden="true">MUT</span>
+              <span class="inst-info">
+                <strong>Mangosuthu University of Technology</strong>
+                <span class="inst-meta"><svg class="icon" width="14" height="14"><use href="#i-pin"/></svg>Umlazi, Durban</span>
+                <span class="inst-type">University of Technology</span>
+              </span>
+              <span class="inst-go" aria-hidden="true"><svg class="icon" width="16" height="16"><use href="#i-external"/></svg></span>
+              <span class="sr-only">Opens the official website in a new tab</span>
+            </a>
+            <a class="inst-card tone-blue" href="https://www.ukzn.ac.za/" target="_blank" rel="noopener noreferrer" data-search="university of kwazulu-natal ukzn durban traditional university kwazulu-natal">
+              <span class="inst-mono" aria-hidden="true">UKZN</span>
+              <span class="inst-info">
+                <strong>University of KwaZulu-Natal</strong>
+                <span class="inst-meta"><svg class="icon" width="14" height="14"><use href="#i-pin"/></svg>Durban</span>
+                <span class="inst-type">Traditional University</span>
+              </span>
+              <span class="inst-go" aria-hidden="true"><svg class="icon" width="16" height="16"><use href="#i-external"/></svg></span>
+              <span class="sr-only">Opens the official website in a new tab</span>
+            </a>
+            <a class="inst-card tone-red" href="https://www.unizulu.ac.za/" target="_blank" rel="noopener noreferrer" data-search="university of zululand unizulu kwadlangezwa comprehensive university kwazulu-natal">
+              <span class="inst-mono" aria-hidden="true">UniZulu</span>
+              <span class="inst-info">
+                <strong>University of Zululand</strong>
+                <span class="inst-meta"><svg class="icon" width="14" height="14"><use href="#i-pin"/></svg>KwaDlangezwa</span>
+                <span class="inst-type">Comprehensive University</span>
+              </span>
+              <span class="inst-go" aria-hidden="true"><svg class="icon" width="16" height="16"><use href="#i-external"/></svg></span>
+              <span class="sr-only">Opens the official website in a new tab</span>
+            </a>
+          </div>
+        </section>
+        <section class="prov" id="western-cape" aria-labelledby="h-western-cape">
+          <header class="prov-head">
+            <span class="pin"><svg class="icon"><use href="#i-pin"/></svg></span>
+            <h2 id="h-western-cape">Western Cape</h2>
+            <span class="count">4 universities</span>
+          </header>
+          <div class="inst-grid">
+            <a class="inst-card tone-teal" href="https://www.cput.ac.za/" target="_blank" rel="noopener noreferrer" data-search="cape peninsula university of technology cput cape town university of technology western cape">
+              <span class="inst-mono" aria-hidden="true">CPUT</span>
+              <span class="inst-info">
+                <strong>Cape Peninsula University of Technology</strong>
+                <span class="inst-meta"><svg class="icon" width="14" height="14"><use href="#i-pin"/></svg>Cape Town</span>
+                <span class="inst-type">University of Technology</span>
+              </span>
+              <span class="inst-go" aria-hidden="true"><svg class="icon" width="16" height="16"><use href="#i-external"/></svg></span>
+              <span class="sr-only">Opens the official website in a new tab</span>
+            </a>
+            <a class="inst-card tone-blue" href="https://www.sun.ac.za/" target="_blank" rel="noopener noreferrer" data-search="stellenbosch university su stellenbosch traditional university western cape">
+              <span class="inst-mono" aria-hidden="true">SU</span>
+              <span class="inst-info">
+                <strong>Stellenbosch University</strong>
+                <span class="inst-meta"><svg class="icon" width="14" height="14"><use href="#i-pin"/></svg>Stellenbosch</span>
+                <span class="inst-type">Traditional University</span>
+              </span>
+              <span class="inst-go" aria-hidden="true"><svg class="icon" width="16" height="16"><use href="#i-external"/></svg></span>
+              <span class="sr-only">Opens the official website in a new tab</span>
+            </a>
+            <a class="inst-card tone-blue" href="https://www.uct.ac.za/" target="_blank" rel="noopener noreferrer" data-search="university of cape town uct cape town traditional university western cape">
+              <span class="inst-mono" aria-hidden="true">UCT</span>
+              <span class="inst-info">
+                <strong>University of Cape Town</strong>
+                <span class="inst-meta"><svg class="icon" width="14" height="14"><use href="#i-pin"/></svg>Cape Town</span>
+                <span class="inst-type">Traditional University</span>
+              </span>
+              <span class="inst-go" aria-hidden="true"><svg class="icon" width="16" height="16"><use href="#i-external"/></svg></span>
+              <span class="sr-only">Opens the official website in a new tab</span>
+            </a>
+            <a class="inst-card tone-blue" href="https://www.uwc.ac.za/" target="_blank" rel="noopener noreferrer" data-search="university of the western cape uwc bellville, cape town traditional university western cape">
+              <span class="inst-mono" aria-hidden="true">UWC</span>
+              <span class="inst-info">
+                <strong>University of the Western Cape</strong>
+                <span class="inst-meta"><svg class="icon" width="14" height="14"><use href="#i-pin"/></svg>Bellville, Cape Town</span>
+                <span class="inst-type">Traditional University</span>
+              </span>
+              <span class="inst-go" aria-hidden="true"><svg class="icon" width="16" height="16"><use href="#i-external"/></svg></span>
+              <span class="sr-only">Opens the official website in a new tab</span>
+            </a>
+          </div>
+        </section>
+        <section class="prov" id="free-state" aria-labelledby="h-free-state">
+          <header class="prov-head">
+            <span class="pin"><svg class="icon"><use href="#i-pin"/></svg></span>
+            <h2 id="h-free-state">Free State</h2>
+            <span class="count">2 universities</span>
+          </header>
+          <div class="inst-grid">
+            <a class="inst-card tone-teal" href="https://www.cut.ac.za/" target="_blank" rel="noopener noreferrer" data-search="central university of technology cut bloemfontein university of technology free state">
+              <span class="inst-mono" aria-hidden="true">CUT</span>
+              <span class="inst-info">
+                <strong>Central University of Technology</strong>
+                <span class="inst-meta"><svg class="icon" width="14" height="14"><use href="#i-pin"/></svg>Bloemfontein</span>
+                <span class="inst-type">University of Technology</span>
+              </span>
+              <span class="inst-go" aria-hidden="true"><svg class="icon" width="16" height="16"><use href="#i-external"/></svg></span>
+              <span class="sr-only">Opens the official website in a new tab</span>
+            </a>
+            <a class="inst-card tone-blue" href="https://www.ufs.ac.za/" target="_blank" rel="noopener noreferrer" data-search="university of the free state ufs bloemfontein traditional university free state">
+              <span class="inst-mono" aria-hidden="true">UFS</span>
+              <span class="inst-info">
+                <strong>University of the Free State</strong>
+                <span class="inst-meta"><svg class="icon" width="14" height="14"><use href="#i-pin"/></svg>Bloemfontein</span>
+                <span class="inst-type">Traditional University</span>
+              </span>
+              <span class="inst-go" aria-hidden="true"><svg class="icon" width="16" height="16"><use href="#i-external"/></svg></span>
+              <span class="sr-only">Opens the official website in a new tab</span>
+            </a>
+          </div>
+        </section>
+        <section class="prov" id="limpopo" aria-labelledby="h-limpopo">
+          <header class="prov-head">
+            <span class="pin"><svg class="icon"><use href="#i-pin"/></svg></span>
+            <h2 id="h-limpopo">Limpopo</h2>
+            <span class="count">2 universities</span>
+          </header>
+          <div class="inst-grid">
+            <a class="inst-card tone-blue" href="https://www.ul.ac.za/" target="_blank" rel="noopener noreferrer" data-search="university of limpopo ul polokwane traditional university limpopo">
+              <span class="inst-mono" aria-hidden="true">UL</span>
+              <span class="inst-info">
+                <strong>University of Limpopo</strong>
+                <span class="inst-meta"><svg class="icon" width="14" height="14"><use href="#i-pin"/></svg>Polokwane</span>
+                <span class="inst-type">Traditional University</span>
+              </span>
+              <span class="inst-go" aria-hidden="true"><svg class="icon" width="16" height="16"><use href="#i-external"/></svg></span>
+              <span class="sr-only">Opens the official website in a new tab</span>
+            </a>
+            <a class="inst-card tone-red" href="https://www.univen.ac.za/" target="_blank" rel="noopener noreferrer" data-search="university of venda univen thohoyandou comprehensive university limpopo">
+              <span class="inst-mono" aria-hidden="true">UNIVEN</span>
+              <span class="inst-info">
+                <strong>University of Venda</strong>
+                <span class="inst-meta"><svg class="icon" width="14" height="14"><use href="#i-pin"/></svg>Thohoyandou</span>
+                <span class="inst-type">Comprehensive University</span>
+              </span>
+              <span class="inst-go" aria-hidden="true"><svg class="icon" width="16" height="16"><use href="#i-external"/></svg></span>
+              <span class="sr-only">Opens the official website in a new tab</span>
+            </a>
+          </div>
+        </section>
+        <section class="prov" id="mpumalanga" aria-labelledby="h-mpumalanga">
+          <header class="prov-head">
+            <span class="pin"><svg class="icon"><use href="#i-pin"/></svg></span>
+            <h2 id="h-mpumalanga">Mpumalanga</h2>
+            <span class="count">1 university</span>
+          </header>
+          <div class="inst-grid">
+            <a class="inst-card tone-blue" href="https://www.ump.ac.za/" target="_blank" rel="noopener noreferrer" data-search="university of mpumalanga ump mbombela traditional university mpumalanga">
+              <span class="inst-mono" aria-hidden="true">UMP</span>
+              <span class="inst-info">
+                <strong>University of Mpumalanga</strong>
+                <span class="inst-meta"><svg class="icon" width="14" height="14"><use href="#i-pin"/></svg>Mbombela</span>
+                <span class="inst-type">Traditional University</span>
+              </span>
+              <span class="inst-go" aria-hidden="true"><svg class="icon" width="16" height="16"><use href="#i-external"/></svg></span>
+              <span class="sr-only">Opens the official website in a new tab</span>
+            </a>
+          </div>
+        </section>
+        <section class="prov" id="north-west" aria-labelledby="h-north-west">
+          <header class="prov-head">
+            <span class="pin"><svg class="icon"><use href="#i-pin"/></svg></span>
+            <h2 id="h-north-west">North West</h2>
+            <span class="count">1 university</span>
+          </header>
+          <div class="inst-grid">
+            <a class="inst-card tone-blue" href="https://www.nwu.ac.za/" target="_blank" rel="noopener noreferrer" data-search="north-west university nwu potchefstroom traditional university north west">
+              <span class="inst-mono" aria-hidden="true">NWU</span>
+              <span class="inst-info">
+                <strong>North-West University</strong>
+                <span class="inst-meta"><svg class="icon" width="14" height="14"><use href="#i-pin"/></svg>Potchefstroom</span>
+                <span class="inst-type">Traditional University</span>
+              </span>
+              <span class="inst-go" aria-hidden="true"><svg class="icon" width="16" height="16"><use href="#i-external"/></svg></span>
+              <span class="sr-only">Opens the official website in a new tab</span>
+            </a>
+          </div>
+        </section>
+        <section class="prov" id="northern-cape" aria-labelledby="h-northern-cape">
+          <header class="prov-head">
+            <span class="pin"><svg class="icon"><use href="#i-pin"/></svg></span>
+            <h2 id="h-northern-cape">Northern Cape</h2>
+            <span class="count">1 university</span>
+          </header>
+          <div class="inst-grid">
+            <a class="inst-card tone-blue" href="https://www.spu.ac.za/" target="_blank" rel="noopener noreferrer" data-search="sol plaatje university spu kimberley traditional university northern cape">
+              <span class="inst-mono" aria-hidden="true">SPU</span>
+              <span class="inst-info">
+                <strong>Sol Plaatje University</strong>
+                <span class="inst-meta"><svg class="icon" width="14" height="14"><use href="#i-pin"/></svg>Kimberley</span>
+                <span class="inst-type">Traditional University</span>
+              </span>
+              <span class="inst-go" aria-hidden="true"><svg class="icon" width="16" height="16"><use href="#i-external"/></svg></span>
+              <span class="sr-only">Opens the official website in a new tab</span>
+            </a>
+          </div>
+        </section>
+
+      <div class="empty" id="instEmpty" hidden>
+        <strong id="instEmptyTitle">No universities found</strong>
+        <p class="muted">Try a different name, or clear the filters to see all 26.</p>
+        <button class="btn btn-primary btn-sm" type="button" id="instReset">Clear filters</button>
+      </div>
+
+      <p class="note">Universities are grouped by their main campus. Some have campuses in more than one province, so check the university’s website for details.</p>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta-wrap">
+    <div class="container">
+      <div class="cta">
+        <div>
+          <h2>Found your institution?</h2>
+          <p>Check your APS, then start your application — without stress.</p>
+        </div>
+        <div class="actions">
+          <a class="btn btn-accent" href="apply.html">Start Application</a>
+          <a class="btn btn-outline-light" href="calculator.html">Check my APS</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <span class="badge-logo"><span class="emblem" role="img" aria-label="Kasi2Campus logo"></span></span>
+      <div>
+        <strong>Kasi2Campus</strong>
+        <p>You focus on passing. We focus on your future.</p>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <h4>Services</h4>
+      <a href="pricing.html">Pricing</a>
+      <a href="apply.html">Apply</a>
+      <a href="calculator.html">APS Calculator</a>
+      <a href="contact.html">Contact</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Resources</h4>
+      <a href="faq.html">FAQ</a>
+      <a href="deadlines.html">Deadlines</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <a href="privacy-policy.html">Privacy Policy</a>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    © <span id="year">2026</span> Kasi2Campus. All rights reserved.
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script src="js/institutions.js"></script>
+</body>
+</html>

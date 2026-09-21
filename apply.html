@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Kasi2Campus | Apply</title>
+<meta name="description" content="Fill in your details, upload your documents and submit your university or college application with Kasi2Campus." />
+<link rel="icon" href="assets/logo-emblem.png" type="image/png" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css" />
+
+<!-- Apply page styles. Paste into css/style.css if you prefer a single stylesheet. -->
+<style>
+  .apply-section { padding-block: 36px 72px; }
+  .apply-layout { display: grid; grid-template-columns: 320px minmax(0, 1fr); gap: 32px; align-items: start; }
+
+  /* ---------- Sidebar ---------- */
+  .apply-aside { position: sticky; top: 100px; display: grid; gap: 16px; }
+  .aside-card { padding: 22px; border: 1px solid var(--line); border-radius: 16px; background: var(--surface); }
+  .aside-card h2 { font-size: 1.05rem; font-weight: 800; }
+  .aside-label { font-size: 0.8rem; font-weight: 700; color: var(--muted); }
+  .aside-note { margin: 8px 0 14px; font-size: 0.88rem; color: var(--muted); line-height: 1.5; }
+  .pkg-card { background: var(--bg-soft); }
+  .pkg-line { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-top: 6px; }
+  .pkg-line strong { font-size: 1.3rem; font-weight: 800; line-height: 1.2; color: var(--text); }
+  .pkg-line span { font-size: 1.3rem; font-weight: 800; color: var(--link); }
+  .pkg-none strong { display: block; margin-top: 6px; font-size: 1.1rem; font-weight: 800; }
+
+  .have-list { display: grid; gap: 12px; margin-top: 14px; }
+  .have-list li { display: flex; align-items: flex-start; gap: 12px; font-size: 0.92rem; line-height: 1.4; }
+  .have-list .tick { width: 24px; height: 24px; margin-top: 1px; border-radius: 50%; display: grid; place-items: center; flex: none; background: var(--teal-tint); color: var(--teal); }
+  .have-list .tick .icon { width: 14px; height: 14px; }
+  .have-list small { display: block; color: var(--muted); font-size: 0.8rem; }
+  .aside-help { margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line); font-size: 0.85rem; color: var(--muted); }
+  .aside-help a { color: var(--link); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+
+  /* ---------- Form ---------- */
+  .req-note { margin-bottom: 18px; font-size: 0.85rem; color: var(--muted); }
+  .req { margin-left: 2px; color: var(--accent); font-weight: 800; }
+
+  .af-card { padding: 26px; border: 1px solid var(--line); border-radius: 18px; background: var(--surface); scroll-margin-top: 100px; }
+  .af-card + .af-card { margin-top: 20px; }
+  .af-head { display: flex; align-items: center; gap: 14px; margin-bottom: 22px; padding-bottom: 18px; border-bottom: 1px solid var(--line); }
+  .af-head .ico { width: 46px; height: 46px; border-radius: 12px; display: grid; place-items: center; flex: none; background: var(--tone-tint); color: var(--tone); }
+  .af-head h2 { font-size: 1.25rem; font-weight: 800; }
+  .af-head p { margin-top: 2px; font-size: 0.88rem; color: var(--muted); }
+
+  .af-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 20px; }
+  .af-grid .span-2 { grid-column: 1 / -1; }
+
+  .apply-form .ctl-wrap label { font-size: 0.85rem; color: var(--text); }
+  .apply-form .ctl::placeholder { color: var(--muted); opacity: .8; }
+  .apply-form .ctl:user-invalid { border-color: var(--accent); }
+  textarea.ctl { height: auto; min-height: 112px; padding: 14px 16px; line-height: 1.5; resize: vertical; }
+  textarea.ctl.tall { min-height: 150px; }
+  input[type="file"].ctl { height: auto; padding: 9px 12px; cursor: pointer; font-size: 0.9rem; color: var(--muted); }
+  input[type="file"].ctl::file-selector-button {
+    margin-right: 12px; padding: 8px 14px; border: 0; border-radius: 8px;
+    background: var(--blue-tint); color: var(--link);
+    font: inherit; font-size: 0.85rem; font-weight: 700; cursor: pointer;
+  }
+  .hint { margin-top: 6px; font-size: 0.8rem; color: var(--muted); }
+  .hint a { color: var(--link); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+
+  .af-submit { margin-top: 24px; }
+  .af-submit .btn { padding-block: 16px; }
+  .af-submit p { margin-top: 12px; font-size: 0.85rem; color: var(--muted); }
+  .af-submit a { color: var(--link); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+
+  @media (max-width: 980px) {
+    .apply-layout { grid-template-columns: 1fr; gap: 24px; }
+    .apply-aside { position: static; grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 700px) {
+    .apply-aside { grid-template-columns: 1fr; }
+    .af-card { padding: 22px 18px; }
+    .af-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+
+<body>
+<!-- Icon sprite -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-mail" viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+    <symbol id="i-calc" viewBox="0 0 24 24"><rect width="16" height="20" x="4" y="2" rx="2"/><line x1="8" x2="16" y1="6" y2="6"/><line x1="16" x2="16" y1="14" y2="18"/><path d="M16 10h.01M12 10h.01M8 10h.01M12 14h.01M8 14h.01M12 18h.01M8 18h.01"/></symbol>
+    <symbol id="i-cal" viewBox="0 0 24 24"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></symbol>
+    <symbol id="i-book" viewBox="0 0 24 24"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></symbol>
+    <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1"/></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+    <symbol id="i-trend" viewBox="0 0 24 24"><path d="m22 7-8.5 8.5-5-5L2 17"/><path d="M16 7h6v6"/></symbol>
+    <symbol id="i-upload" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M12 18v-6"/><path d="m9 15 3-3 3 3"/></symbol>
+  </defs>
+</svg>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="container">
+    <a href="calculator.html"><svg class="icon" width="16" height="16"><use href="#i-calc"/></svg><span><strong>Know your APS</strong> before you apply</span></a>
+    <div class="links">
+      <a href="deadlines.html"><svg class="icon" width="16" height="16"><use href="#i-cal"/></svg>Deadlines</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html"><svg class="icon" width="16" height="16"><use href="#i-mail"/></svg>Contact</a>
+    </div>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<header class="site-header">
+  <nav class="navbar container" aria-label="Main">
+    <a class="brand" href="index.html" aria-label="Kasi2Campus home">
+      <span class="emblem" role="img" aria-label="Kasi2Campus logo"></span>
+      <span class="brand-name">Kasi<i>2</i>Campus</span>
+    </a>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="institutions.html">Institutions</a></li>
+      <li><a href="courses.html">Courses</a></li>
+      <li><a href="pricing.html">Pricing</a></li>
+      <li><a class="active" href="apply.html" aria-current="page">Apply</a></li>
+      <li><a href="portal/index.html">Student Portal</a></li>
+      <li><a href="calculator.html">APS &amp; Average Calculator</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+
+    <a class="btn btn-accent nav-cta" href="pricing.html">View Packages</a>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navLinks">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+  </nav>
+</header>
+
+<main id="main">
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="container">
+      <div>
+        <nav class="crumbs" aria-label="Breadcrumb">
+          <a href="index.html">Home</a><span aria-hidden="true">/</span><span aria-current="page">Apply</span>
+        </nav>
+        <h1>Application form</h1>
+        <p>Fill in your details and upload your documents. After you submit, we take you back to the home page.</p>
+      </div>
+      <div class="hero-facts" aria-label="The form at a glance">
+        <div class="fact"><strong>5</strong><span>Sections</span></div>
+        <div class="fact t"><strong>3</strong><span>Uploads</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section apply-section" aria-label="Application form">
+    <div class="container apply-layout">
+
+      <!-- SIDEBAR -->
+      <aside class="apply-aside" aria-label="Before you start">
+        <div class="aside-card pkg-card">
+          <div id="pkgChosen" hidden>
+            <p class="aside-label">Your package</p>
+            <div class="pkg-line"><strong id="pkgName"></strong><span id="pkgAmount"></span></div>
+            <p class="aside-note">Selected on the pricing page. Upload your proof of payment for it below.</p>
+            <a class="text-link" href="pricing.html">Change package <svg class="icon" width="16" height="16" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          </div>
+          <div id="pkgNone" class="pkg-none">
+            <p class="aside-label">Your package</p>
+            <strong>No package selected yet</strong>
+            <p class="aside-note">This form asks for proof of payment, so choose and pay for a package first.</p>
+            <a class="btn btn-primary btn-sm" href="pricing.html">View Packages</a>
+          </div>
+        </div>
+
+        <div class="aside-card">
+          <h2>Have these ready</h2>
+          <ul class="have-list">
+            <li><span class="tick"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg></span><span>Your ID copy</span></li>
+            <li><span class="tick"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg></span><span>Your latest results</span></li>
+            <li><span class="tick"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg></span><span>Proof of payment</span></li>
+            <li><span class="tick"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg></span><span>Parent or guardian details</span></li>
+            <li><span class="tick"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg></span><span>Proof of upgrading<small>Only if you’re upgrading</small></span></li>
+          </ul>
+          <p class="aside-help">Uploads can be PDF, JPG or PNG. Need help? <a href="contact.html">Contact us</a>.</p>
+        </div>
+      </aside>
+
+      <!-- FORM (FormSubmit) -->
+      <form class="apply-form" id="applyForm"
+            action="https://formsubmit.co/kasi2campus@gmail.com"
+            method="POST"
+            enctype="multipart/form-data">
+
+        <!-- FormSubmit settings -->
+        <input type="hidden" name="_subject" value="New Kasi2Campus Application" />
+        <input type="hidden" name="_captcha" value="true" />
+        <input type="hidden" name="_template" value="table" />
+        <input type="hidden" name="_next" value="https://niphoprincenkuna.github.io/kasi2campus/index.html" />
+
+        <!-- Package chosen on the pricing page (filled in by the script below) -->
+        <input type="hidden" id="selected_package" name="Selected Package" value="" />
+        <input type="hidden" id="selected_amount" name="Package Amount" value="" />
+
+        <p class="req-note">Fields marked <span class="req" aria-hidden="true">*</span> are required.</p>
+
+        <!-- APPLICANT DETAILS -->
+        <section class="af-card tone-blue" aria-labelledby="sec-applicant">
+          <div class="af-head">
+            <span class="ico"><svg class="icon" width="22" height="22" aria-hidden="true"><use href="#i-user"/></svg></span>
+            <div>
+              <h2 id="sec-applicant">Applicant details</h2>
+              <p>Tell us who is applying.</p>
+            </div>
+          </div>
+
+          <div class="af-grid">
+            <div class="ctl-wrap">
+              <label for="first_name">First name <span class="req" aria-hidden="true">*</span></label>
+              <input class="ctl" id="first_name" type="text" name="First Name" autocomplete="given-name" required />
+            </div>
+            <div class="ctl-wrap">
+              <label for="second_name">Second name</label>
+              <input class="ctl" id="second_name" type="text" name="Second Name" autocomplete="additional-name" />
+            </div>
+            <div class="ctl-wrap">
+              <label for="surname">Surname <span class="req" aria-hidden="true">*</span></label>
+              <input class="ctl" id="surname" type="text" name="Surname" autocomplete="family-name" required />
+            </div>
+            <div class="ctl-wrap">
+              <label for="id_number">ID number <span class="req" aria-hidden="true">*</span></label>
+              <input class="ctl" id="id_number" type="text" name="ID Number" inputmode="numeric" autocomplete="off" required />
+            </div>
+            <div class="ctl-wrap">
+              <label for="cell_number">Cell phone number <span class="req" aria-hidden="true">*</span></label>
+              <input class="ctl" id="cell_number" type="tel" name="Cell Number" inputmode="tel" autocomplete="tel" required />
+            </div>
+            <div class="ctl-wrap">
+              <label for="applicant_email">Email address <span class="req" aria-hidden="true">*</span></label>
+              <input class="ctl" id="applicant_email" type="email" name="Applicant Email" autocomplete="email" required />
+            </div>
+            <div class="ctl-wrap">
+              <label for="current_status">Current status <span class="req" aria-hidden="true">*</span></label>
+              <select class="ctl" id="current_status" name="Current Status" required>
+                <option value="">Select</option>
+                <option value="Currently in Grade 12">Currently in Grade 12</option>
+                <option value="Completed Matric">Completed Matric</option>
+                <option value="Upgrading">Upgrading</option>
+              </select>
+            </div>
+            <div class="ctl-wrap" id="matricYearWrap" hidden>
+              <label for="matric_year">Year of matric <span class="req" aria-hidden="true">*</span></label>
+              <select class="ctl" id="matric_year" name="Year of Matric">
+                <option value="">Select year</option>
+                <option>2026</option><option>2025</option><option>2024</option><option>2023</option>
+                <option>2022</option><option>2021</option><option>2020</option><option>2019</option>
+                <option>2018</option><option>2017</option><option>2016</option><option>2015</option>
+              </select>
+            </div>
+            <div class="ctl-wrap">
+              <label for="current_school">Current school <span class="req" aria-hidden="true">*</span></label>
+              <input class="ctl" id="current_school" type="text" name="Current School" placeholder="Name of current school" required />
+            </div>
+            <div class="ctl-wrap">
+              <label for="previous_school">Previous school (if different)</label>
+              <input class="ctl" id="previous_school" type="text" name="Previous School" placeholder="If you transferred schools" />
+            </div>
+            <div class="ctl-wrap span-2">
+              <label for="physical_address">Physical address <span class="req" aria-hidden="true">*</span></label>
+              <textarea class="ctl" id="physical_address" name="Physical Address" autocomplete="street-address" required></textarea>
+            </div>
+          </div>
+        </section>
+
+        <!-- COURSES -->
+        <section class="af-card tone-teal" aria-labelledby="sec-courses">
+          <div class="af-head">
+            <span class="ico"><svg class="icon" width="22" height="22" aria-hidden="true"><use href="#i-book"/></svg></span>
+            <div>
+              <h2 id="sec-courses">Courses you want to apply for</h2>
+              <p>List each course and your preferred universities, if you have any.</p>
+            </div>
+          </div>
+
+          <div class="ctl-wrap">
+            <label for="courses">Courses and universities <span class="req" aria-hidden="true">*</span></label>
+            <textarea class="ctl tall" id="courses" name="Courses" required placeholder="Example:
+1) BSc Computer Science - UP, UJ
+2) Nursing - UWC, UKZN
+3) Teaching - UNISA"></textarea>
+            <p class="hint">Not sure what you qualify for? Try the <a href="calculator.html">APS &amp; Average Calculator</a> or browse <a href="courses.html">courses</a>.</p>
+          </div>
+        </section>
+
+        <!-- UPGRADING -->
+        <section class="af-card tone-red" aria-labelledby="sec-upgrading">
+          <div class="af-head">
+            <span class="ico"><svg class="icon" width="22" height="22" aria-hidden="true"><use href="#i-trend"/></svg></span>
+            <div>
+              <h2 id="sec-upgrading">Upgrading</h2>
+              <p>If you’re upgrading your results, choose “Yes” and upload proof.</p>
+            </div>
+          </div>
+
+          <div class="af-grid">
+            <div class="ctl-wrap">
+              <label for="is_upgrading">Are you upgrading? <span class="req" aria-hidden="true">*</span></label>
+              <select class="ctl" id="is_upgrading" name="Upgrading" required>
+                <option value="">Select</option>
+                <option value="No">No</option>
+                <option value="Yes">Yes</option>
+              </select>
+            </div>
+            <div class="ctl-wrap" id="upgradeWhereWrap" hidden>
+              <label for="upgrade_where">Where are you upgrading?</label>
+              <input class="ctl" id="upgrade_where" type="text" name="Upgrading Institution" placeholder="College, school or centre name" />
+            </div>
+            <div class="ctl-wrap span-2" id="upgradeNoteWrap" hidden>
+              <label for="upgrade_notes">Upgrading notes (optional)</label>
+              <textarea class="ctl" id="upgrade_notes" name="Upgrading Notes" placeholder="Which subjects are you upgrading? Any extra information?"></textarea>
+            </div>
+            <div class="ctl-wrap span-2" id="proofUpgradeWrap" hidden>
+              <label for="proof_of_upgrading">Proof of upgrading <span class="req" aria-hidden="true">*</span></label>
+              <input class="ctl" id="proof_of_upgrading" type="file" name="Proof of Upgrading" accept=".pdf,.jpg,.jpeg,.png" />
+              <p class="hint">PDF, JPG or PNG</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- NEXT OF KIN -->
+        <section class="af-card tone-navy" aria-labelledby="sec-kin">
+          <div class="af-head">
+            <span class="ico"><svg class="icon" width="22" height="22" aria-hidden="true"><use href="#i-users"/></svg></span>
+            <div>
+              <h2 id="sec-kin">Next of kin details</h2>
+              <p>A parent or guardian we can contact.</p>
+            </div>
+          </div>
+
+          <div class="af-grid">
+            <div class="ctl-wrap">
+              <label for="parent_name">Parent or guardian name <span class="req" aria-hidden="true">*</span></label>
+              <input class="ctl" id="parent_name" type="text" name="Parent Name" autocomplete="off" required />
+            </div>
+            <div class="ctl-wrap">
+              <label for="parent_surname">Parent or guardian surname <span class="req" aria-hidden="true">*</span></label>
+              <input class="ctl" id="parent_surname" type="text" name="Parent Surname" autocomplete="off" required />
+            </div>
+            <div class="ctl-wrap">
+              <label for="parent_cell">Parent cell phone <span class="req" aria-hidden="true">*</span></label>
+              <input class="ctl" id="parent_cell" type="tel" name="Parent Cell" inputmode="tel" autocomplete="off" required />
+            </div>
+            <div class="ctl-wrap">
+              <label for="parent_id">Parent ID number <span class="req" aria-hidden="true">*</span></label>
+              <input class="ctl" id="parent_id" type="text" name="Parent ID" inputmode="numeric" autocomplete="off" required />
+            </div>
+            <div class="ctl-wrap span-2">
+              <label for="parent_email">Parent email <span class="req" aria-hidden="true">*</span></label>
+              <input class="ctl" id="parent_email" type="email" name="Parent Email" autocomplete="off" required />
+            </div>
+          </div>
+        </section>
+
+        <!-- DOCUMENT UPLOADS -->
+        <section class="af-card tone-blue" aria-labelledby="sec-docs">
+          <div class="af-head">
+            <span class="ico"><svg class="icon" width="22" height="22" aria-hidden="true"><use href="#i-upload"/></svg></span>
+            <div>
+              <h2 id="sec-docs">Upload documents</h2>
+              <p>Clear photos or PDFs work best.</p>
+            </div>
+          </div>
+
+          <div class="af-grid">
+            <div class="ctl-wrap span-2">
+              <label for="id_copy">ID copy <span class="req" aria-hidden="true">*</span></label>
+              <input class="ctl" id="id_copy" type="file" name="ID Copy" accept=".pdf,.jpg,.jpeg,.png" required />
+              <p class="hint">PDF, JPG or PNG</p>
+            </div>
+            <div class="ctl-wrap span-2">
+              <label for="latest_results">Latest results <span class="req" aria-hidden="true">*</span></label>
+              <input class="ctl" id="latest_results" type="file" name="Latest Results" accept=".pdf,.jpg,.jpeg,.png" required />
+              <p class="hint">PDF, JPG or PNG</p>
+            </div>
+            <div class="ctl-wrap span-2">
+              <label for="proof_of_payment">Proof of payment <span class="req" aria-hidden="true">*</span></label>
+              <input class="ctl" id="proof_of_payment" type="file" name="Proof of Payment" accept=".pdf,.jpg,.jpeg,.png" required />
+              <p class="hint">PDF, JPG or PNG</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- SUBMIT -->
+        <div class="af-submit">
+          <button type="submit" class="btn btn-primary full">Submit Application</button>
+          <p>By submitting, you confirm that the information you provided is correct. Read our <a href="privacy-policy.html">Privacy Policy</a> to see how we protect it.</p>
+        </div>
+      </form>
+
+    </div>
+  </section>
+</main>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <span class="badge-logo"><span class="emblem" role="img" aria-label="Kasi2Campus logo"></span></span>
+      <div>
+        <strong>Kasi2Campus</strong>
+        <p>You focus on passing. We focus on your future.</p>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <h4>Services</h4>
+      <a href="pricing.html">Pricing</a>
+      <a href="apply.html">Apply</a>
+      <a href="calculator.html">APS Calculator</a>
+      <a href="contact.html">Contact</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Resources</h4>
+      <a href="faq.html">FAQ</a>
+      <a href="deadlines.html">Deadlines</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <a href="privacy-policy.html">Privacy Policy</a>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    © <span id="year">2026</span> Kasi2Campus. All rights reserved.
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+
+<script>
+  (function () {
+    var $ = function (id) { return document.getElementById(id); };
+
+    // 1. Show the package chosen on the pricing page (and send it with the form)
+    try {
+      var pkg = localStorage.getItem("k2c_selected_package");
+      var amount = localStorage.getItem("k2c_selected_amount");
+      if (pkg) {
+        $("selected_package").value = pkg;
+        if (amount) $("selected_amount").value = "R" + amount;
+        $("pkgName").textContent = pkg;
+        $("pkgAmount").textContent = amount ? "R" + amount : "";
+        $("pkgChosen").hidden = false;
+        $("pkgNone").hidden = true;
+      }
+    } catch (e) {
+      // Storage can be blocked (e.g. private mode); the form still works.
+    }
+
+    // 2. Year of matric: only when "Completed Matric"
+    var statusSelect = $("current_status");
+    var matricWrap = $("matricYearWrap");
+    var matricYear = $("matric_year");
+
+    function updateMatricYear() {
+      var show = statusSelect.value === "Completed Matric";
+      matricWrap.hidden = !show;
+      matricYear.required = show;
+      if (!show) matricYear.value = "";
+    }
+    statusSelect.addEventListener("change", updateMatricYear);
+    updateMatricYear();
+
+    // 3. Upgrading: extra fields + required proof when "Yes"
+    var upgradingSelect = $("is_upgrading");
+    var whereWrap = $("upgradeWhereWrap");
+    var noteWrap = $("upgradeNoteWrap");
+    var proofWrap = $("proofUpgradeWrap");
+    var proofInput = $("proof_of_upgrading");
+
+    function updateUpgrading() {
+      var isYes = upgradingSelect.value === "Yes";
+      whereWrap.hidden = !isYes;
+      noteWrap.hidden = !isYes;
+      proofWrap.hidden = !isYes;
+      proofInput.required = isYes;
+      if (!isYes) proofInput.value = "";
+    }
+    upgradingSelect.addEventListener("change", updateUpgrading);
+    updateUpgrading();
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Kasi2Campus | APS &amp; Average Calculator</title>
+<meta name="description" content="Enter your Grade 12 subjects and percentages to estimate your APS and average, and see courses you may qualify for." />
+<link rel="icon" href="assets/logo-emblem.png" type="image/png" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css" />
+
+<!-- Calculator page styles. Paste into css/style.css if you prefer a single stylesheet. -->
+<style>
+  .calc-section { padding-block: 36px 72px; }
+  .calc-layout { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 28px; align-items: start; }
+  .calc-layout > .calc-card { padding: 28px; }
+
+  .calc-top { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px 20px; }
+  .calc-title { display: flex; align-items: center; gap: 14px; }
+  .calc-title .ico { width: 46px; height: 46px; border-radius: 12px; display: grid; place-items: center; flex: none; background: var(--blue-tint); color: var(--link); }
+  .calc-title p { margin-top: 2px; font-size: 0.85rem; color: var(--muted); }
+
+  .toggle {
+    display: inline-flex; align-items: center; gap: 10px; padding: 9px 16px;
+    border: 1.5px solid var(--line); border-radius: 999px; background: var(--surface);
+    font-size: 0.88rem; font-weight: 600; cursor: pointer;
+    transition: border-color .18s, background-color .18s;
+  }
+  .toggle:hover { border-color: var(--primary); }
+  .toggle:has(input:checked) { background: var(--blue-tint); border-color: var(--primary); }
+  .toggle input { width: 18px; height: 18px; margin: 0; accent-color: var(--primary); cursor: pointer; }
+
+  /* ---------- Subject rows ---------- */
+  .grp-title { margin: 26px 0 2px; padding-top: 20px; border-top: 1px solid var(--line); font-size: 0.8rem; font-weight: 700; color: var(--muted); }
+  .grp-title.first { margin-top: 22px; }
+
+  .calc-form .row { display: grid; grid-template-columns: minmax(0, 1fr) 150px 134px; gap: 14px; align-items: end; padding: 10px 0; }
+  .calc-form .row.dim { opacity: .45; pointer-events: none; }
+
+  /* .field is also the home-page tile style; neutralise it inside the calculator */
+  .calc-form .field { display: block; gap: 0; min-width: 0; padding: 0; border: 0; border-radius: 0; background: none; transition: none; }
+  .calc-form .field:hover { border-color: transparent; background: none; }
+  .calc-form .field label { display: block; margin-bottom: 7px; font-size: 0.82rem; font-weight: 700; color: var(--text); }
+  .calc-form .field .req { display: inline; margin: 0 0 0 2px; font-size: inherit; line-height: inherit; color: var(--accent); font-weight: 800; }
+
+  .calc-form .ctl { height: 48px; font-size: 0.95rem; }
+  .calc-form .ctl:disabled { background: var(--bg-soft); color: var(--muted); cursor: not-allowed; }
+  .calc-form input[type="number"] { -moz-appearance: textfield; appearance: textfield; }
+  .calc-form input[type="number"]::-webkit-outer-spin-button,
+  .calc-form input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+
+  .level-pill {
+    height: 48px; display: grid; place-items: center; padding: 0 10px; border-radius: 12px;
+    background: var(--blue-tint); color: var(--link);
+    font-size: 0.85rem; font-weight: 700; text-align: center; white-space: nowrap;
+  }
+
+  .calc-form .actions { display: flex; justify-content: flex-end; gap: 12px; margin-top: 24px; padding-top: 22px; border-top: 1px solid var(--line); }
+  .calc-form > p { margin-top: 14px; }
+
+  /* ---------- Results ---------- */
+  .results-card { position: sticky; top: 100px; max-height: calc(100vh - 120px); overflow-y: auto; scrollbar-width: thin; }
+  .result-box { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 22px; }
+  .result-item { padding: 16px 18px; border: 1px solid var(--line); border-radius: 14px; background: var(--bg-soft); }
+  .result-item .muted { font-weight: 600; }
+  .result-big { margin-top: 6px; font-size: 2.4rem; font-weight: 800; line-height: 1; letter-spacing: -0.02em; color: var(--link); }
+  .result-item:nth-child(2) .result-big { color: var(--teal); }
+
+  .empty-hint { margin-top: 16px; padding: 14px 16px; border: 1.5px dashed var(--line); border-radius: 12px; text-align: center; }
+  .breakdown:not(:empty) + .empty-hint { display: none; }
+
+  /* Generated output: styled without depending on the exact markup */
+  .breakdown { margin-top: 16px; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; font-size: 0.9rem; }
+  .breakdown:empty { display: none; }
+  .breakdown > div, .breakdown li { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 16px; }
+  .breakdown > div + div, .breakdown li + li { border-top: 1px solid var(--line); }
+  .breakdown ul { list-style: none; margin: 0; padding: 0; }
+  .breakdown table { width: 100%; border-collapse: collapse; }
+  .breakdown th, .breakdown td { padding: 10px 16px; text-align: left; border-top: 1px solid var(--line); }
+  .breakdown tr:first-child > * { border-top: 0; }
+  .breakdown th { background: var(--bg-soft); font-size: 0.78rem; color: var(--muted); }
+
+  .sub-title { margin-top: 26px; padding-top: 22px; border-top: 1px solid var(--line); font-size: 1.1rem; font-weight: 800; }
+  #courseHint { margin-top: 6px; line-height: 1.5; }
+  .course-suggestions { display: grid; gap: 10px; margin-top: 14px; }
+  .course-suggestions:empty { display: none; }
+  .course-suggestions > * { padding: 12px 14px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); font-size: 0.9rem; line-height: 1.4; }
+  .course-suggestions > p { padding: 0; border: 0; background: none; color: var(--muted); }
+  .course-suggestions ul { list-style: none; margin: 0; padding: 0; border: 0; background: none; display: grid; gap: 10px; }
+  .course-suggestions li { padding: 12px 14px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); }
+  .course-suggestions strong { display: block; color: var(--text); }
+
+  @media (max-width: 980px) {
+    .calc-layout { grid-template-columns: 1fr; }
+    .results-card { position: static; max-height: none; overflow: visible; }
+  }
+  @media (max-width: 600px) {
+    .calc-layout > .calc-card { padding: 22px 18px; }
+    .calc-form .row { grid-template-columns: 1fr 1fr; }
+    .calc-form .row > .field:first-child { grid-column: 1 / -1; }
+    .calc-form .actions .btn { flex: 1; }
+    .result-big { font-size: 2rem; }
+  }
+</style>
+</head>
+
+<body>
+<!-- Icon sprite -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-mail" viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></symbol>
+    <symbol id="i-calc" viewBox="0 0 24 24"><rect width="16" height="20" x="4" y="2" rx="2"/><line x1="8" x2="16" y1="6" y2="6"/><line x1="16" x2="16" y1="14" y2="18"/><path d="M16 10h.01M12 10h.01M8 10h.01M12 14h.01M8 14h.01M12 18h.01M8 18h.01"/></symbol>
+    <symbol id="i-cal" viewBox="0 0 24 24"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></symbol>
+    <symbol id="i-book" viewBox="0 0 24 24"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></symbol>
+    <symbol id="i-trend" viewBox="0 0 24 24"><path d="m22 7-8.5 8.5-5-5L2 17"/><path d="M16 7h6v6"/></symbol>
+  </defs>
+</svg>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="container">
+    <a href="calculator.html"><svg class="icon" width="16" height="16"><use href="#i-calc"/></svg><span><strong>Know your APS</strong> before you apply</span></a>
+    <div class="links">
+      <a href="deadlines.html"><svg class="icon" width="16" height="16"><use href="#i-cal"/></svg>Deadlines</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html"><svg class="icon" width="16" height="16"><use href="#i-mail"/></svg>Contact</a>
+    </div>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<header class="site-header">
+  <nav class="navbar container" aria-label="Main">
+    <a class="brand" href="index.html" aria-label="Kasi2Campus home">
+      <span class="emblem" role="img" aria-label="Kasi2Campus logo"></span>
+      <span class="brand-name">Kasi<i>2</i>Campus</span>
+    </a>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="institutions.html">Institutions</a></li>
+      <li><a href="courses.html">Courses</a></li>
+      <li><a href="pricing.html">Pricing</a></li>
+      <li><a href="apply.html">Apply</a></li>
+      <li><a href="portal/index.html">Student Portal</a></li>
+      <li><a class="active" href="calculator.html" aria-current="page">APS &amp; Average Calculator</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+
+    <a class="btn btn-accent nav-cta" href="apply.html">Apply Now</a>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navLinks">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+  </nav>
+</header>
+
+<main id="main">
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="container">
+      <div>
+        <nav class="crumbs" aria-label="Breadcrumb">
+          <a href="index.html">Home</a><span aria-hidden="true">/</span><span aria-current="page">APS &amp; Average Calculator</span>
+        </nav>
+        <h1>APS &amp; Average Calculator</h1>
+        <p>Enter your subjects and percentages. We’ll calculate your APS and average.</p>
+      </div>
+      <div class="hero-facts" aria-label="What you enter">
+        <div class="fact"><strong>7</strong><span>Required subjects</span></div>
+        <div class="fact t"><strong>+1</strong><span>Optional 8th</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section calc-section" aria-label="Calculator">
+    <div class="container">
+
+      <div class="callout">
+        <svg class="icon" width="20" height="20" aria-hidden="true"><use href="#i-calc"/></svg>
+        <p><strong>Life Orientation counts as APS = 1</strong> in this calculator.</p>
+      </div>
+
+      <div class="calc-layout">
+
+        <!-- FORM -->
+        <div class="calc-card">
+          <div class="calc-top">
+            <div class="calc-title">
+              <span class="ico"><svg class="icon" width="22" height="22" aria-hidden="true"><use href="#i-book"/></svg></span>
+              <div>
+                <h3>Your subjects</h3>
+                <p>7 required, plus an optional 8th.</p>
+              </div>
+            </div>
+            <label class="toggle">
+              <input type="checkbox" id="use8" />
+              <span>Enable 8th subject (optional)</span>
+            </label>
+          </div>
+
+          <form id="calcForm" class="calc-form" novalidate>
+
+            <p class="grp-title first">Languages</p>
+
+            <div class="row">
+              <div class="field">
+                <label for="lang1">Language 1 <span class="req" aria-hidden="true">*</span></label>
+                <select class="ctl" id="lang1" required></select>
+              </div>
+              <div class="field">
+                <label for="lang1Mark">Language 1 % <span class="req" aria-hidden="true">*</span></label>
+                <input class="ctl" id="lang1Mark" type="number" min="0" max="100" inputmode="numeric" placeholder="0 - 100" required />
+              </div>
+              <div class="level-pill" id="lang1Level">Level: -</div>
+            </div>
+
+            <div class="row">
+              <div class="field">
+                <label for="lang2">Language 2 <span class="req" aria-hidden="true">*</span></label>
+                <select class="ctl" id="lang2" required></select>
+              </div>
+              <div class="field">
+                <label for="lang2Mark">Language 2 % <span class="req" aria-hidden="true">*</span></label>
+                <input class="ctl" id="lang2Mark" type="number" min="0" max="100" inputmode="numeric" placeholder="0 - 100" required />
+              </div>
+              <div class="level-pill" id="lang2Level">Level: -</div>
+            </div>
+
+            <p class="grp-title">Maths and Life Orientation</p>
+
+            <div class="row">
+              <div class="field">
+                <label for="mathType">Maths <span class="req" aria-hidden="true">*</span></label>
+                <select class="ctl" id="mathType" required>
+                  <option value="">Select</option>
+                  <option value="Mathematics">Mathematics</option>
+                  <option value="Mathematical Literacy">Mathematical Literacy</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="mathMark">Maths % <span class="req" aria-hidden="true">*</span></label>
+                <input class="ctl" id="mathMark" type="number" min="0" max="100" inputmode="numeric" placeholder="0 - 100" required />
+              </div>
+              <div class="level-pill" id="mathLevel">Level: -</div>
+            </div>
+
+            <div class="row">
+              <div class="field">
+                <label for="loName">Life Orientation <span class="req" aria-hidden="true">*</span></label>
+                <input class="ctl" id="loName" type="text" value="Life Orientation" disabled />
+              </div>
+              <div class="field">
+                <label for="loMark">Life Orientation % <span class="req" aria-hidden="true">*</span></label>
+                <input class="ctl" id="loMark" type="number" min="0" max="100" inputmode="numeric" placeholder="0 - 100" required />
+              </div>
+              <div class="level-pill" id="loLevel">Level: 1 (rule)</div>
+            </div>
+
+            <p class="grp-title">Other subjects</p>
+
+            <div class="row">
+              <div class="field">
+                <label for="sub5">Subject 5 <span class="req" aria-hidden="true">*</span></label>
+                <select class="ctl subj" id="sub5" required></select>
+              </div>
+              <div class="field">
+                <label for="sub5Mark">Subject 5 % <span class="req" aria-hidden="true">*</span></label>
+                <input class="ctl mark" id="sub5Mark" type="number" min="0" max="100" inputmode="numeric" placeholder="0 - 100" required />
+              </div>
+              <div class="level-pill" id="sub5Level">Level: -</div>
+            </div>
+
+            <div class="row">
+              <div class="field">
+                <label for="sub6">Subject 6 <span class="req" aria-hidden="true">*</span></label>
+                <select class="ctl subj" id="sub6" required></select>
+              </div>
+              <div class="field">
+                <label for="sub6Mark">Subject 6 % <span class="req" aria-hidden="true">*</span></label>
+                <input class="ctl mark" id="sub6Mark" type="number" min="0" max="100" inputmode="numeric" placeholder="0 - 100" required />
+              </div>
+              <div class="level-pill" id="sub6Level">Level: -</div>
+            </div>
+
+            <div class="row">
+              <div class="field">
+                <label for="sub7">Subject 7 <span class="req" aria-hidden="true">*</span></label>
+                <select class="ctl subj" id="sub7" required></select>
+              </div>
+              <div class="field">
+                <label for="sub7Mark">Subject 7 % <span class="req" aria-hidden="true">*</span></label>
+                <input class="ctl mark" id="sub7Mark" type="number" min="0" max="100" inputmode="numeric" placeholder="0 - 100" required />
+              </div>
+              <div class="level-pill" id="sub7Level">Level: -</div>
+            </div>
+
+            <!-- Optional subject 8 -->
+            <div class="row dim" id="row8">
+              <div class="field">
+                <label for="sub8">Subject 8 (optional)</label>
+                <select class="ctl subj" id="sub8"></select>
+              </div>
+              <div class="field">
+                <label for="sub8Mark">Subject 8 %</label>
+                <input class="ctl mark" id="sub8Mark" type="number" min="0" max="100" inputmode="numeric" placeholder="0 - 100" />
+              </div>
+              <div class="level-pill" id="sub8Level">Level: -</div>
+            </div>
+
+            <div class="actions">
+              <button type="button" class="btn btn-ghost" id="resetBtn">Reset</button>
+              <button type="submit" class="btn btn-primary">Calculate</button>
+            </div>
+
+            <p class="muted small">
+              Universities calculate APS differently. This tool gives a helpful estimate.
+            </p>
+          </form>
+        </div>
+
+        <!-- RESULTS -->
+        <div class="calc-card results-card" aria-live="polite">
+          <div class="calc-top">
+            <div class="calc-title">
+              <span class="ico"><svg class="icon" width="22" height="22" aria-hidden="true"><use href="#i-trend"/></svg></span>
+              <h3>Results</h3>
+            </div>
+          </div>
+
+          <div class="result-box">
+            <div class="result-item">
+              <div class="muted small">APS Total</div>
+              <div class="result-big" id="apsOut">-</div>
+            </div>
+
+            <div class="result-item">
+              <div class="muted small">Average %</div>
+              <div class="result-big" id="avgOut">-</div>
+            </div>
+          </div>
+
+          <div class="breakdown" id="breakdown"></div>
+          <p class="empty-hint muted small">Enter your marks and press Calculate to see your APS, average and course suggestions.</p>
+
+          <h3 class="sub-title">Courses you can apply for</h3>
+          <p class="muted small" id="courseHint">
+            Suggestions are filtered by APS, Maths vs Maths Lit, and Physical Sciences selection.
+            Always confirm final requirements on the university website.
+          </p>
+          <div class="course-suggestions" id="courseSuggestions"></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <span class="badge-logo"><span class="emblem" role="img" aria-label="Kasi2Campus logo"></span></span>
+      <div>
+        <strong>Kasi2Campus</strong>
+        <p>You focus on passing. We focus on your future.</p>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <h4>Services</h4>
+      <a href="pricing.html">Pricing</a>
+      <a href="apply.html">Apply</a>
+      <a href="calculator.html">APS Calculator</a>
+      <a href="contact.html">Contact</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Resources</h4>
+      <a href="faq.html">FAQ</a>
+      <a href="deadlines.html">Deadlines</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <a href="privacy-policy.html">Privacy Policy</a>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    © <span id="year">2026</span> Kasi2Campus. All rights reserved.
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script src="js/calculator.js"></script>
+</body>
+</html>
